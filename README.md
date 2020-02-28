@@ -6,7 +6,7 @@ Work Log:
     9:30 -- Watching a tutorial series where someone sets up Tone.js in a project: https://www.youtube.com/watch?v=8u1aQdG5Nrk
     10:30 -- Added a kick that plays back 4 on the floor
     11:00 -- Succesfully Logged transport time in ticks with the clock and a button click
-
+    11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.
 
 
 
