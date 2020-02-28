@@ -4,7 +4,7 @@ Work Log:
     8:30 -- New attempt with a project made with create-react-app
     9:00 -- Successfully loaded Tone.js into a React app and put it in a separate component
     9:30 -- Watching a tutorial series where someone sets up Tone.js in a project: https://www.youtube.com/watch?v=8u1aQdG5Nrk
-
+    10:30 -- Added a kick that plays back 4 on the floor
 
 
 

@@ -2,11 +2,20 @@ import React from 'react';
 import * as Tone from 'tone';
 
 function ToneTest(){
-//create a synth and connect it to the master output (your speakers)
-var synth = new Tone.Synth().toMaster()
+let kick;
+let looper;
 
-//play a middle 'C' for the duration of an 8th note
-synth.triggerAttackRelease('C4', '8n')
+kick = new Tone.MembraneSynth().toMaster();
+looper = new Tone.Loop(song, '4n');
+
+Tone.Transport.start();
+looper.start(0);
+
+function song(time){
+    kick.triggerAttackRelease(50, '8n', time);
+    console.log(time);
+}
+
 
     return(
         <div>
