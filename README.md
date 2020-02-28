@@ -1,3 +1,15 @@
+Work Log: 
+2/28/2020
+    8:00 -- Attempted to import Tone.js library into a straight js file with index.html. Ran into CORS issues.
+    8:30 -- New attempt with a project made with create-react-app
+    9:00 -- Successfully loaded Tone.js into a React app and put it in a separate component
+    9:30 -- Watching a tutorial series where someone sets up Tone.js in a project: https://www.youtube.com/watch?v=8u1aQdG5Nrk
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -65,4 +77,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 ### `yarn build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify 
