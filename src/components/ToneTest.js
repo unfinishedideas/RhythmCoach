@@ -5,10 +5,9 @@ import kickSample from './../audio/kick.ogg';
 
 function ToneTest() {
     // Initializing ====================================================================================================
-    let kickBuffer;
-    let kickPlayer;
-    
-    function checkListen(listeningToUser){
+    let transportOn = true;
+
+    function setListen(listeningToUser){
         if (listeningToUser === true) {
             Tone.context.latencyHint = 'fastest';
             console.log('Current latency mode:', Tone.context.latencyHint);
@@ -18,18 +17,18 @@ function ToneTest() {
         }
     }
 
-    checkListen(false);
+    setListen(false);
     
     // Sampler Set up
-    kickBuffer = new Tone.Buffer
+    let kickBuffer = new Tone.Buffer
     (
         kickSample,
         function () { 
-            console.log('kick buffer loaded')},
+            console.log('kick buffer loaded');},
         function () { 
             console.log('kick buffer failed to load');}
     )
-    kickPlayer = new Tone.Player(kickBuffer, function () { console.log('kick sample initialized'); }).toMaster();
+    let kickPlayer = new Tone.Player(kickBuffer, function () { console.log('kick sample initialized'); }).toMaster();
     
 
     // Playback ========================================================================================================
@@ -37,25 +36,37 @@ function ToneTest() {
     let looper = new Tone.Loop(song, '16n');
     looper.start(0);
 
-
-    // This is the function called every 16th note by looper
     function song(time) {
         console.log(Tone.Transport.ticks);
     }
 
-    // This gets the time in ticks from start and plays sample
     function getTime() {
         console.log('time: ', Tone.Transport.getTicksAtTime());
-        kickPlayer.start()
+        kickPlayer.start();
     }
 
     window.addEventListener('keydown', event => {
-        getTime()
+         getTime();
     })
+
+    function toggleTransport() {
+        if (transportOn) {
+            console.log('stopping');
+            Tone.Transport.stop();
+            transportOn = false;
+        } else {
+            console.log('starting');
+            Tone.Transport.start();
+            transportOn = true;
+        }        
+    }
 
     return (
         <div>
             <h2>ToneTest loaded: Press any key to log time in ticks and play sound</h2>
+            <button onClick={toggleTransport}>Start/Stop</button>
+            <button onClick={() =>setListen(true)}>Allow listening</button>
+            <button onClick={() => setListen(false)}>No listening</button>
         </div>
     )
 }

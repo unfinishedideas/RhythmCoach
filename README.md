@@ -10,7 +10,8 @@ Work Log:
     11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.  
     12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.  
     1:00 -- Successfully got sample to play (reminder: remember to use an import statement at the top!)  
-    2:00 -- Scaffolding actual application architecture. Realized setting latency to fastest prevents scheduling events (ie: sequencer). Set up listening function
+    2:00 -- Scaffolding actual application architecture. Realized setting latency to fastest prevents scheduling events (ie: sequencer). Set up listening function.  
+    2:30 -- After setting up listener functions / transport start/stop controls suddenly latency mode doesn't seem to matter with scheduling? Investigating
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
