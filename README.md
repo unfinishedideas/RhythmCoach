@@ -1,14 +1,16 @@
-Work Log: 
-2/28/2020
-    8:00 -- Attempted to import Tone.js library into a straight js file with index.html. Ran into CORS issues.
-    8:30 -- New attempt with a project made with create-react-app
-    9:00 -- Successfully loaded Tone.js into a React app and put it in a separate component
-    9:30 -- Watching a tutorial series where someone sets up Tone.js in a project: https://www.youtube.com/watch?v=8u1aQdG5Nrk
-    10:30 -- Added a kick that plays back 4 on the floor
-    11:00 -- Succesfully Logged transport time in ticks with the clock and a button click
-    11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.
-    12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.
-    1:00 -- Successfully got sample to play (reminder: remember to use an import statement at the top!)
+Work Log:   
+2/28/2020  
+
+    8:00 -- Attempted to import Tone.js library into a straight js file with index.html. Ran into CORS issues.  
+    8:30 -- New attempt with a project made with create-react-app  
+    9:00 -- Successfully loaded Tone.js into a React app and put it in a separate component  
+    9:30 -- Watching a tutorial series where someone sets up Tone.js in a project: https://www.youtube.com/watch?v=8u1aQdG5Nrk  
+    10:30 -- Added a kick that plays back 4 on the floor  
+    11:00 -- Succesfully Logged transport time in ticks with the clock and a button click  
+    11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.  
+    12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.  
+    1:00 -- Successfully got sample to play (reminder: remember to use an import statement at the top!)  
+    2:00 -- Scaffolding actual application architecture. Realized setting latency to fastest prevents scheduling events (ie: sequencer). Set up listening function
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
