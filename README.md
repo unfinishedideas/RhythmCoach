@@ -8,7 +8,7 @@ Work Log:
     11:00 -- Succesfully Logged transport time in ticks with the clock and a button click
     11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.
     12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.
-
+    1:00 -- Successfully got sample to play (reminder: remember to use an import statement at the top!)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

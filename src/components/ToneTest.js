@@ -1,5 +1,14 @@
 import React from 'react';
 import * as Tone from 'tone';
+import kickSample from './../audio/kick.ogg';
+
+// var kickBuffer = new Tone.Buffer(
+//     "kick_copy.ogg", 
+//     function(){console.log('kick buffer loaded')},
+//     function(){console.log('kick buffer failed to load')}
+// )
+
+let kickPlayer = new Tone.Player(kickSample,function(){console.log('kick sample initialized');}).toMaster();
 
 function ToneTest(){
     let looper;
@@ -9,16 +18,8 @@ function ToneTest(){
     // kick.triggerAttackRelease(50, '8n', time);
     // kick = new Tone.MembraneSynth().toMaster();
    
-
-    let kickBuffer = new Tone.Buffer('./../audio/kick.ogg', function(){
-        console.log('kick buffer loaded');
-    })
-
-    let kickSample = new Tone.Player(kickBuffer, function(){
-        console.log('kick sample init');
-    }).toMaster();
     
-    // Tone.context.lookAhead = 0
+    Tone.context.lookAhead = 0
     
     looper = new Tone.Loop(song, '16n');
     Tone.Transport.start();
@@ -32,7 +33,7 @@ function ToneTest(){
     function getTime(){
         console.log('time: ', Tone.Transport.getTicksAtTime());
         // kick.triggerAttackRelease(50, '8n', "+0.0025");
-        kickSample.start()
+        kickPlayer.start()
     }
 
     window.addEventListener('keydown', event => {
