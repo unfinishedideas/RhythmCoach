@@ -7,6 +7,7 @@ Work Log:
     10:30 -- Added a kick that plays back 4 on the floor
     11:00 -- Succesfully Logged transport time in ticks with the clock and a button click
     11:30 -- Found that adding event listener with 'keydown' has wayy less latency (still some) than doing an onClick event. Keyboards are in y'all.
+    12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.
 
 
 

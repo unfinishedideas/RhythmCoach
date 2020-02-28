@@ -2,31 +2,37 @@ import React from 'react';
 import * as Tone from 'tone';
 
 function ToneTest(){
-    let kick;
     let looper;
-    // let light = false;
-        // kick.triggerAttackRelease(50, '8n', time);
-
     
+    // let kick;
+    // let light = false;
+    // kick.triggerAttackRelease(50, '8n', time);
+    // kick = new Tone.MembraneSynth().toMaster();
+   
 
+    let kickBuffer = new Tone.Buffer('./../audio/kick.ogg', function(){
+        console.log('kick buffer loaded');
+    })
 
-    kick = new Tone.MembraneSynth().toMaster();
+    let kickSample = new Tone.Player(kickBuffer, function(){
+        console.log('kick sample init');
+    }).toMaster();
+    
+    // Tone.context.lookAhead = 0
+    
     looper = new Tone.Loop(song, '16n');
-
     Tone.Transport.start();
-
     looper.start(0);
 
-    Tone.context.lookAhead = 0
-    
     function song(time){
         // console.log(Tone.Transport.ticks);
         // if (Tone.Transport.position === ) 
     }
 
-    function getTime(time){
+    function getTime(){
         console.log('time: ', Tone.Transport.getTicksAtTime());
- kick.triggerAttackRelease(50, '8n', time);
+        // kick.triggerAttackRelease(50, '8n', "+0.0025");
+        kickSample.start()
     }
 
     window.addEventListener('keydown', event => {
@@ -35,8 +41,7 @@ function ToneTest(){
 
     return(
         <div>
-        <button onClick={() => getTime()}>TIME</button>
-        <h2>Hi</h2>
+        <h2>ToneTest loaded: Press any key to log time in ticks and play sound</h2>
         </div>
     )
 }
