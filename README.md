@@ -11,7 +11,12 @@ Work Log:
     12:30 -- Attempting to load samples via Tone.Buffer / Tone.Player. Not working yet.  
     1:00 -- Successfully got sample to play (reminder: remember to use an import statement at the top!)  
     2:00 -- Scaffolding actual application architecture. Realized setting latency to fastest prevents scheduling events (ie: sequencer). Set up listening function.  
-    2:30 -- After setting up listener functions / transport start/stop controls suddenly latency mode doesn't seem to matter with scheduling? Investigating
+    2:30 -- After setting up listener functions / transport start/stop controls suddenly latency mode doesn't seem to matter with scheduling? Investigating  
+    2:45 -- Idea: everytime you hit a 'target measure' (to listen to user input) reset the transport? If there's no delay then you can accurately measure time.  
+    If not then maybe there's a way to reset ticks?  
+    3:00 -- Lunch
+    4:00 -- Attempting to set up sequence. Currently uneven due to how events are scheduled? Latency compensation might be messing this up.
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
