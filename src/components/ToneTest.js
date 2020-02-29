@@ -8,77 +8,59 @@ function ToneTest() {
     // Initializing ====================================================================================================
     let transportOn = true;
 
-    // function setListen(listeningToUser){
-    //     if (listeningToUser === true) {
-            // Tone.context.latencyHint = 'fastest';
-    //         console.log('Current latency mode:', Tone.context.latencyHint);
-    //     } else {
-            // Tone.context.latencyHint = 'playback';
-    //         console.log('Current latency mode:', Tone.context.latencyHint);
-    //     }
-    // }
+    function setListen(listeningToUser){
+        if (listeningToUser === true) {
+            Tone.context.latencyHint = 'fastest';
+            console.log('Current latency mode:', Tone.context.latencyHint);
+        } else {
+            Tone.context.latencyHint = 'interactive';
+            console.log('Current latency mode:', Tone.context.latencyHint);
+        }
+    };
 
-    // setListen(false);
-    // Sampler Set up
-    let kickBuffer = new Tone.Buffer
-    (
-        kickSample,
-        function () { 
-            console.log('kick buffer loaded');},
-        function () { 
-            console.log('kick buffer failed to load');}
-    )
+
+
+    // Load Samples
+    let kickBuffer = new Tone.Buffer(kickSample);
+    let snareBuffer = new Tone.Buffer(snareSample);
+    let hatBuffer = new Tone.Buffer(hatSample);
+
     let kickPlayer = new Tone.Player(kickBuffer, function () { console.log('kick sample initialized'); }).toMaster();    
-    
-    let snareBuffer = new Tone.Buffer
-    (
-        snareSample,
-        function () { 
-            console.log('snare buffer loaded');},
-        function () { 
-            console.log('snare buffer failed to load');}
-    )
     let snarePlayer = new Tone.Player(snareBuffer, function () { console.log('snare sample initialized'); }).toMaster();
-    
-    let hatBuffer = new Tone.Buffer
-    (
-        hatSample,
-        function () { 
-            console.log('hat buffer loaded');},
-        function () { 
-            console.log('hat buffer failed to load');}
-    )
     let hatPlayer = new Tone.Player(hatBuffer, function () { console.log('hat sample initialized'); }).toMaster();
     
-
+    
     // Playback ========================================================================================================
+    Tone.Buffer.on('load',
+        function onLoad(){
+            console.log('All samples loaded');
+            setListen(false);
+            Tone.Transport.start();
+            let looper = new Tone.Loop(song, '8n');
+            looper.start(0);
+        },
+        function onError(){
+            console.log("Something didn't load properly");
+        }
+    );
+    
     let counter = 1;
-    Tone.Transport.start();
-    let looper = new Tone.Loop(song, '16n');
-    looper.start(0);
-
     function song(time) {
         // console.log(Tone.Transport.ticks);
         // console.log(counter);
-        hatPlayer.start();
-        if (counter === 5 || counter === 13) {
-            snarePlayer.start();
-        }
-        if (counter === 1 || counter === 5 || counter === 9 || counter === 13){
-            kickPlayer.start();
-        }
-        counter += 1;
-        if (counter > 16) {
-            counter = 1;
-        }
-    }
-    function getTime() {
-        // console.log('time: ', Tone.Transport.getTicksAtTime());
         kickPlayer.start();
+    }
+    function getTime(string) {
+        console.log(`time of ${string}:`, Tone.Transport.getTicksAtTime());
+    }
+
+    function playSnare() {
+        getTime('input');
+        snarePlayer.start();
     }
 
     window.addEventListener('keydown', event => {
-         getTime();
+         playSnare();
     })
 
     function toggleTransport() {
@@ -99,10 +81,10 @@ function ToneTest() {
             <h3>Press any key to log time in ticks and play a sound</h3>
             <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
             <button onClick={toggleTransport}>Start/Stop</button>
-            {/* <br/>
+            <br/>
             <button onClick={() => setListen(true)}>Fastest Latency</button>
             <br/>
-            <button onClick={() => setListen(false)}>Playback Latency (stops sound)</button> */}
+            <button onClick={() => setListen(false)}>Playback Latency (stops sound)</button>
         </div>
     )
 }

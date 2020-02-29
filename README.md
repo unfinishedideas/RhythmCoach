@@ -15,7 +15,8 @@ Work Log:
     2:45 -- Idea: everytime you hit a 'target measure' (to listen to user input) reset the transport? If there's no delay then you can accurately measure time.  
     If not then maybe there's a way to reset ticks?  
     3:00 -- Lunch
-    4:00 -- Attempting to set up sequence. Currently uneven due to how events are scheduled? Latency compensation might be messing this up.
+    4:00 -- Attempting to set up sequence. Currently uneven due to how events are scheduled? Latency compensation might be messing this up.   
+    4:30 -- Discovered interesting thing where initial latencyHint needs to be set to interactive first or the audio doesn't play but is much more even when switched back over.  
 
 
 
