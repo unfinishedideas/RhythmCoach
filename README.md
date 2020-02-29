@@ -17,6 +17,7 @@ Work Log:
     3:00 -- Lunch
     4:00 -- Attempting to set up sequence. Currently uneven due to how events are scheduled? Latency compensation might be messing this up.   
     4:30 -- Discovered interesting thing where initial latencyHint needs to be set to interactive first or the audio doesn't play but is much more even when switched back over.  
+    4:45 -- Added a difference calculator from the beat to the user input.
 
 
 

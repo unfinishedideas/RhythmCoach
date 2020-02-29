@@ -36,7 +36,7 @@ function ToneTest() {
             console.log('All samples loaded');
             setListen(false);
             Tone.Transport.start();
-            let looper = new Tone.Loop(song, '8n');
+            let looper = new Tone.Loop(song, '4n');
             looper.start(0);
         },
         function onError(){
@@ -45,17 +45,20 @@ function ToneTest() {
     );
     
     let counter = 1;
+    let currentBeatTick = 0;
     function song(time) {
         // console.log(Tone.Transport.ticks);
         // console.log(counter);
         kickPlayer.start();
+        currentBeatTick = Tone.Transport.getTicksAtTime();
     }
-    function getTime(string) {
+    function displayTime(string) {
         console.log(`time of ${string}:`, Tone.Transport.getTicksAtTime());
     }
 
     function playSnare() {
-        getTime('input');
+        // displayTime('input');
+        compareTime(Tone.Transport.getTicksAtTime());
         snarePlayer.start();
     }
 
@@ -74,6 +77,16 @@ function ToneTest() {
             transportOn = true;
         }        
     }
+
+    // Game stuff ======================================================================================================
+    function compareTime(inputTick) {
+        console.log('----------------------------');
+        console.log('target: ', currentBeatTick);
+        console.log('input:', inputTick);
+        console.log('difference: ', inputTick - currentBeatTick);
+        
+    }
+
 
     return (
         <div>
