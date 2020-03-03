@@ -58,16 +58,11 @@ function ToneTest() {
         // Rhythm Key
         // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
         // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
-        const hatRhythmArray = [1,3,5,7,9,11,13,15]
+        const hatRhythmArray = [1,3,5,7,9,11,13,15];
         const snareRhythmArray = [5,13];
         const kickRhythmArray = [1,3,0,9,10,12];
 
-        // Hacky solution to when the transport loops and you get really big differences from compareTime().
-        // To be replaced later!!!!!!
-        if (counter === 0) {
-            currentBeatTick = Tone.Transport.getTicksAtTime();
-        }
-        // ^^^^^^^^^^^^^^^^^^ replace dis
+        // NOTE!!! Sometimes the difference is yuuuge. Possibly due to the loop not resetting CurrentBeatTick
 
         // Hats
         // if (counter %2 !== 0) {   <-- if you just want 8ths
