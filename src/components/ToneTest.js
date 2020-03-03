@@ -50,25 +50,37 @@ function ToneTest() {
 
     let currentBeatTick = 0;
     let counter = 0;
-    // Rhythm Key
-    // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
-    // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
     
     function song(time) {
         // console.log(Tone.Transport.ticks);
         // console.log(counter);
+        
+        // Rhythm Key
+        // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
+        // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
+        const hatRhythmArray = [1,3,5,7,9,11,13,15]
+        const snareRhythmArray = [5,13];
+        const kickRhythmArray = [1,3,0,9,10,12];
 
-        // Snares
-        if (counter === 5 || counter === 13){
-            snarePlayer.start();
+        // Hacky solution to when the transport loops and you get really big differences from compareTime().
+        // To be replaced later!!!!!!
+        if (counter === 0) {
             currentBeatTick = Tone.Transport.getTicksAtTime();
         }
+        // ^^^^^^^^^^^^^^^^^^ replace dis
+
         // Hats
-        if (counter %2 !== 0) {
+        // if (counter %2 !== 0) {   <-- if you just want 8ths
+        if (hatRhythmArray.includes(counter)) {
             hatPlayer.start();
         }
+        // Snares
+        if (snareRhythmArray.includes(counter)){
+            snarePlayer.start();
+            // Used in compareTime(); to gauge accuracy
+            currentBeatTick = Tone.Transport.getTicksAtTime();
+        }
         // Kicks
-        const kickRhythmArray = [1,3,0,9,10,12];
         if (kickRhythmArray.includes(counter) ) {
             kickPlayer.start();
         }
