@@ -31,6 +31,9 @@ function ToneTest() {
 
 
     // Playback ========================================================================================================
+
+    //  IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
+    
     Tone.Buffer.on('load',
         function onLoad() {
             console.log('All samples loaded');
@@ -40,7 +43,6 @@ function ToneTest() {
             Tone.Transport.loopStart = 0;
             Tone.Transport.loopEnd = '2m'
             Tone.Transport.loop = true;
-            // Tone.Transport.start();
 
             looper.start(0);
         },
@@ -49,6 +51,7 @@ function ToneTest() {
         }
     );
 
+    // Eventually make this state?
     let targetTick = 0;
     let counter = 1;
     let firstTick = null;
@@ -56,6 +59,7 @@ function ToneTest() {
     let sixteenthSpacing = null;
     let nextTargetTick = null;
     let aboutToLoop = false;
+    let remainingTicks = 0;
 
     function song() {
         // Rhythm Key
@@ -67,6 +71,7 @@ function ToneTest() {
         const targetRhythmArray = [5, 13];
         // const targetRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
         // const targetRhythmArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+        // const targetRhythmArray = [1,3,4,5,7,11,13]
 
         // Calculate the distance between ticks. 16th spacing
         if (counter === 1) {
@@ -74,21 +79,24 @@ function ToneTest() {
         } else if (counter === 2) {
             secondTick = Tone.Transport.getTicksAtTime();
         }
-        if (secondTick != null && counter !== 1) {
+        if (secondTick !== null && counter !== 1) {
             sixteenthSpacing = secondTick - firstTick;
         }
-
 
         // Set the ticks for the target note
         // If the transport is about to loop get a more accurate reading of the target ticks coming up. .position[0] changes based on # of measures.
         if (Tone.Transport.position[0] === '1' && Tone.Transport.position[2] === '3' && Tone.Transport.position[4] === '3') {
             aboutToLoop = true;
+            remainingTicks = (sixteenthSpacing * 16) - (sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1])
         }
         if (aboutToLoop === true) {
-            nextTargetTick = (targetRhythmArray[0] * sixteenthSpacing) - sixteenthSpacing;
+            nextTargetTick = targetRhythmArray[0] * sixteenthSpacing;
             aboutToLoop = false;
+            console.log('%%%%%%%%')
             console.log('loop!')
-            console.log(nextTargetTick)
+            console.log('remainingTicks', remainingTicks)
+            console.log('next target tick:', nextTargetTick)
+            console.log('%%%%%%%%')
         }
         else if (targetRhythmArray.includes(counter)) {
             targetTick = Tone.Transport.getTicksAtTime();
@@ -158,16 +166,25 @@ function ToneTest() {
     }
 
     // Game stuff ======================================================================================================
-    // This doesn't work right because you are calculating between 16th notes. Not the rhythm.
     function compareTime() {
         let desiredTarget = targetTick;
-        let inputTick = Tone.Transport.getTicksAtTime()
+        let inputTick = Tone.Transport.getTicksAtTime();
 
-        // Currently breaks when loops
+        // Currently breaks when loops as well as input before first rhythm.
+        // Target is off!
         let distanceToNextNote = nextTargetTick - targetTick;
+        if (aboutToLoop === true) {
+            distanceToNextNote = remainingTicks + nextTargetTick
+        }
 
         // If inputTick > (1/2 distanceToNextNote) desiredTarget = nextNote
+
+
         let difference = inputTick - desiredTarget;
+        if (aboutToLoop === true) {
+            difference = remainingTicks + nextTargetTick
+        }
+
         if (difference > (distanceToNextNote / 2)) {
             desiredTarget = nextTargetTick;
         };
@@ -175,13 +192,12 @@ function ToneTest() {
         // Compares how close to the nearest 16th you inputted....(do you need this?)
 
         console.log('----------------------------');
-        console.log('distance between rhythms', distanceToNextNote)
+        console.log('distance between rhythms: ', distanceToNextNote)
         console.log('target: ', desiredTarget);
-        console.log('input:', inputTick);
+        console.log('input: ', inputTick);
+        console.log('next target: ', nextTargetTick);
         console.log('how close: ', inputTick - desiredTarget);
     }
-
-
 
     return (
         <div>
