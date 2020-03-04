@@ -6,7 +6,7 @@ import hatSample from './../audio/hat.ogg';
 
 function ToneTest() {
     // Initializing ====================================================================================================
-    let transportOn = true;
+    let transportOn = false;
 
     function setListen(listeningToUser){
         if (listeningToUser === true) {
@@ -38,7 +38,7 @@ function ToneTest() {
             Tone.Transport.loopStart = 0;
             Tone.Transport.loopEnd = '4m'
             Tone.Transport.loop = true;
-            Tone.Transport.start();
+            // Tone.Transport.start();
            
             let looper = new Tone.Loop(song, '16n');
             looper.start(0);
@@ -48,37 +48,64 @@ function ToneTest() {
         }
     );
 
-    let currentBeatTick = 0;
-    let counter = 0;
-    
-    function song(time) {
-        // console.log(Tone.Transport.ticks);
-        // console.log(counter);
-        
+    let targetTick = 0;
+    let counter = 1;
+    let firstTick = null;
+    let secondTick = null;
+    let sixteenthSpacing = null;
+    let nextTargetNote = null;
+
+    function song() {
         // Rhythm Key
         // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
         // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
         const hatRhythmArray = [1,3,5,7,9,11,13,15];
         const snareRhythmArray = [5,13];
         const kickRhythmArray = [1,3,0,9,10,12];
+        const targetRhythmArray = [5, 8, 13];
 
-        // NOTE!!! Sometimes the difference is yuuuge. Possibly due to the loop not resetting CurrentBeatTick
+        // NOTE!!! Sometimes the difference is yuuuge. Possibly due to the loop not resetting targetTick
+        // Note pt2. Also: If you are early for a note it is a large diff because it compares to the last note
+        // and not the nearest one.
 
+        // Set the ticks for the target note
+        if (targetRhythmArray.includes(counter)){
+            targetTick = Tone.Transport.getTicksAtTime();
+            
+            let nextIndex = targetRhythmArray.indexOf((counter)) + 1;
+            if ((nextIndex + 1) > targetRhythmArray.length){
+                nextIndex = 0;
+            }
+            nextTargetNote = targetRhythmArray[nextIndex];
+        }
+
+        // Backing track playback
         // Hats
-        // if (counter %2 !== 0) {   <-- if you just want 8ths
         if (hatRhythmArray.includes(counter)) {
             hatPlayer.start();
         }
         // Snares
-        if (snareRhythmArray.includes(counter)){
+        if (snareRhythmArray.includes(counter)) {
             snarePlayer.start();
-            // Used in compareTime(); to gauge accuracy
-            currentBeatTick = Tone.Transport.getTicksAtTime();
         }
         // Kicks
-        if (kickRhythmArray.includes(counter) ) {
+        if (kickRhythmArray.includes(counter)) {
             kickPlayer.start();
         }
+
+
+        // Calculate the distance between ticks. 16th spacing
+        if (counter === 1){
+            firstTick = Tone.Transport.getTicksAtTime();
+        } else if (counter === 2){
+            secondTick = Tone.Transport.getTicksAtTime();
+        }
+        if (secondTick != null && counter !== 1) {
+            sixteenthSpacing = secondTick - firstTick;
+        }
+
+
+        // Reset Counter on beat 1
         if (counter < 16) {
             counter += 1
         }
@@ -86,21 +113,16 @@ function ToneTest() {
             counter = 1;
         }
     }
-
-    function displayTime(string) {
-        console.log(`time of ${string}:`, Tone.Transport.getTicksAtTime());
-    }
-
+    
     function playSnare() {
-        // displayTime('input');
-        compareTime(Tone.Transport.getTicksAtTime());
         snarePlayer.start();
     }
-
+    
     window.addEventListener('keydown', event => {
-         playSnare();
+        compareTime();
+        playSnare();
     })
-
+    
     function toggleTransport() {
         if (transportOn) {
             console.log('stopping');
@@ -113,15 +135,34 @@ function ToneTest() {
             counter = 1;
         }
     }
-
+    
     // Game stuff ======================================================================================================
-    function compareTime(inputTick) {
-        console.log('----------------------------');
-        console.log('target: ', currentBeatTick);
-        console.log('input:', inputTick);
-        console.log('difference: ', inputTick - currentBeatTick);
+    // This doesn't work right because you are calculating between 16th notes. Not the rhythm.
+    function compareTime() {
+        let desiredTarget = targetTick;
+        let inputTick = Tone.Transport.getTicksAtTime()
+        let distanceToNextNote = null;
+        
+        // Calculates Distance to Next Note
 
+
+        // If inputTick > 1/2 distanceToNextNote desiredTarget = nextNote
+
+
+        // Compares how close to the nearest 16th you inputted....(do you need this?)
+
+
+        // Old!
+        // if ((inputTick - targetTick) > (sixteenthSpacing / 2)){
+        //     desiredTarget = targetTick + sixteenthSpacing
+        // }
+            
+        console.log('----------------------------');
+        console.log('target: ', desiredTarget);
+        console.log('input:', inputTick);
+        console.log('sixteenthSpacing: ', inputTick - desiredTarget);
     }
+
 
 
     return (
