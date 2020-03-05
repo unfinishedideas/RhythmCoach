@@ -87,16 +87,19 @@ function ToneTest() {
         // If the transport is about to loop get a more accurate reading of the target ticks coming up. .position[0] changes based on # of measures.
         if (Tone.Transport.position[0] === '1' && Tone.Transport.position[2] === '3' && Tone.Transport.position[4] === '3') {
             aboutToLoop = true;
-            remainingTicks = (sixteenthSpacing * 16) - (sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1])
         }
         if (aboutToLoop === true) {
+            remainingTicks = (sixteenthSpacing * 16) - (sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1])
             nextTargetTick = (targetRhythmArray[0] * sixteenthSpacing) - sixteenthSpacing;
+            distanceToNextNote = nextTargetTick + remainingTicks;
+            targetTick =  remainingTicks * -1;
             aboutToLoop = false;
-            console.log('%%%%%%%%')
-            console.log('loop!')
-            console.log('remainingTicks', remainingTicks)
-            console.log('next target tick:', nextTargetTick)
-            console.log('%%%%%%%%')
+            console.log('%%%%%%%%');
+            console.log('loop!');
+            // console.log('remainingTicks', remainingTicks);
+            // console.log('next target tick:', nextTargetTick);
+            // console.log('distance to next: ', distanceToNextNote);
+            console.log('%%%%%%%%');
         }
         else if (targetRhythmArray.includes(counter)) {
             targetTick = Tone.Transport.getTicksAtTime();
@@ -114,7 +117,7 @@ function ToneTest() {
             if (nextIndex === 0) {
                 nextTargetTick += + (sixteenthSpacing * 16)
             }
-
+            distanceToNextNote = nextTargetTick - targetTick;
             // console.log('currentNote ticks: ', targetTick)
             // console.log('next target ticks: ', nextTargetTick)
             // console.log('------')
@@ -167,28 +170,14 @@ function ToneTest() {
     }
 
     // Game stuff ======================================================================================================
+
     function compareTime() {
+        // Target is currently wrong on loop
         let desiredTarget = targetTick;
         let inputTick = Tone.Transport.getTicksAtTime();
 
-        // Currently breaks when loops as well as input before first rhythm.
-        // Target is off!
-        distanceToNextNote = nextTargetTick - targetTick;
-
-        // Doesn't Trip.
-        if (aboutToLoop === true) {
-            distanceToNextNote = remainingTicks + nextTargetTick
-            console.log('CHANGE UP')
-        }
-
-        // If inputTick > (1/2 distanceToNextNote) desiredTarget = nextNote
-
-
         let difference = inputTick - desiredTarget;
-        if (aboutToLoop === true) {
-            difference = remainingTicks + nextTargetTick
-        }
-
+    
         if (difference > (distanceToNextNote / 2)) {
             desiredTarget = nextTargetTick;
         };
@@ -196,10 +185,10 @@ function ToneTest() {
         // Compares how close to the nearest 16th you inputted....(do you need this?)
 
         console.log('----------------------------');
-        console.log('distance between rhythms: ', distanceToNextNote)
+        // console.log('distance between rhythms: ', distanceToNextNote)
         console.log('target: ', desiredTarget);
         console.log('input: ', inputTick);
-        console.log('next target: ', nextTargetTick);
+        // console.log('next target: ', nextTargetTick);
         console.log('how close: ', inputTick - desiredTarget);
     }
 
