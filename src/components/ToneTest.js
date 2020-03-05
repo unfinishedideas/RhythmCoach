@@ -3,7 +3,6 @@ import * as Tone from 'tone';
 import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
-// import { ConsoleWriter } from 'istanbul-lib-report';
 
 function ToneTest() {
     // Initializing ====================================================================================================
@@ -32,7 +31,7 @@ function ToneTest() {
 
     // Playback ========================================================================================================
 
-    //  IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
+    // IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
     Tone.Buffer.on('load',
         function onLoad() {
             console.log('All samples loaded');
@@ -181,8 +180,6 @@ function ToneTest() {
         if (difference > (distanceToNextNote / 2)) {
             desiredTarget = nextTargetTick;
         };
-
-        // Compares how close to the nearest 16th you inputted....(do you need this?)
 
         console.log('----------------------------');
         // console.log('distance between rhythms: ', distanceToNextNote)
