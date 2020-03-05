@@ -33,7 +33,6 @@ function ToneTest() {
     // Playback ========================================================================================================
 
     //  IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
-    
     Tone.Buffer.on('load',
         function onLoad() {
             console.log('All samples loaded');
@@ -60,6 +59,7 @@ function ToneTest() {
     let nextTargetTick = null;
     let aboutToLoop = false;
     let remainingTicks = 0;
+    let distanceToNextNote = 0;
 
     function song() {
         // Rhythm Key
@@ -90,7 +90,7 @@ function ToneTest() {
             remainingTicks = (sixteenthSpacing * 16) - (sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1])
         }
         if (aboutToLoop === true) {
-            nextTargetTick = targetRhythmArray[0] * sixteenthSpacing;
+            nextTargetTick = (targetRhythmArray[0] * sixteenthSpacing) - sixteenthSpacing;
             aboutToLoop = false;
             console.log('%%%%%%%%')
             console.log('loop!')
@@ -128,6 +128,7 @@ function ToneTest() {
         // Snares
         if (snareRhythmArray.includes(counter)) {
             snarePlayer.start();
+            // console.log('you want', Tone.Transport.getTicksAtTime())
         }
         // Kicks
         if (kickRhythmArray.includes(counter)) {
@@ -172,9 +173,12 @@ function ToneTest() {
 
         // Currently breaks when loops as well as input before first rhythm.
         // Target is off!
-        let distanceToNextNote = nextTargetTick - targetTick;
+        distanceToNextNote = nextTargetTick - targetTick;
+
+        // Doesn't Trip.
         if (aboutToLoop === true) {
             distanceToNextNote = remainingTicks + nextTargetTick
+            console.log('CHANGE UP')
         }
 
         // If inputTick > (1/2 distanceToNextNote) desiredTarget = nextNote
