@@ -30,8 +30,6 @@ function ToneTest() {
 
 
     // Playback ========================================================================================================
-
-    // IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
     Tone.Buffer.on('load',
         function onLoad() {
             console.log('All samples loaded');
