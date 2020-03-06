@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import ToneTest from './components/ToneTest';
-import GridDisplay from './components/GridDisplay';
+import GameLogic from './components/GameLogic';
 
 function App() {
   return (
     <div>
-      <h1>TITLE</h1>
-      <GridDisplay/>
+      <h1>Rhythminator</h1>
+      <GameLogic/>
     </div>
   );
 }
