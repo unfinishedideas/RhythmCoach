@@ -40,7 +40,7 @@ function ToneInit (props) {
     let nextTargetTick = null;
     let aboutToLoop = false;
     let remainingTicks = 0;
-    let distanceToNextNote = 0;
+
     function song() {
         // Rhythm Key
         // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
@@ -120,7 +120,6 @@ function ToneInit (props) {
         else {
             counter = 1;
         }
-        props.getState(targetTick);
     }
 
     return(
@@ -128,10 +127,6 @@ function ToneInit (props) {
     )
 
 
-}
-
-ToneInit.propTypes = {
-    getState: PropTypes.func
 }
 
 export default ToneInit;

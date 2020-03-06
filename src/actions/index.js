@@ -1,5 +1,6 @@
-export const changeCurrentTarget = () => {
+export const changeCurrentTarget = (targetTicks) => {
     return{
-        type: 'UPDATE_TARGET'
+        type: 'UPDATE_TARGET',
+        payload: targetTicks
     };
 };

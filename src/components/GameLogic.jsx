@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import * as Tone from 'tone';
 
-// import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
-// import hatSample from './../audio/hat.ogg';
 
-import GridDisplay from './GridDisplay';
-
-import ToneInit from './ToneInit'
-import { changeCurrentTarget } from './../actions';
-import { useSelector, useDispatch } from 'react-redux';
+import ToneInit from './ToneInit';
+import UI from './UI';
 
 function GameLogic(props) {
     // Initializing ====================================================================================================
@@ -30,43 +25,9 @@ function GameLogic(props) {
         }
     };
 
-    // Updating Display Logic
-    const gridBoxes = [
-        {isOn: false, id: 1},
-        {isOn: false, id: 2},
-        {isOn: false, id: 3},
-        {isOn: false, id: 4},
-        {isOn: false, id: 5},
-        {isOn: false, id: 6},
-        {isOn: false, id: 7},
-        {isOn: false, id: 8},
-        {isOn: false, id: 9},
-        {isOn: false, id: 10},
-        {isOn: false, id: 11},
-        {isOn: false, id: 12},
-        {isOn: false, id: 13},
-        {isOn: false, id: 14},
-        {isOn: false, id: 15},
-        {isOn: false, id: 16}
-    ]
-    const [boxes, updateBoxes] = useState(gridBoxes)
-
-    const toggleBox = (id) => {
-        let updatedBoxes = boxes.map(b => {
-            if (b.id === id) b.isOn = !b.isOn;
-            return b;
-        });
-        updateBoxes(updatedBoxes);
-    }
-
     let targetTick = 0;
     let counter = 1;
-    // let firstTick = null;
-    // let secondTick = null;
-    // let sixteenthSpacing = null;
     let nextTargetTick = null;
-    // let aboutToLoop = false;
-    // let remainingTicks = 0;
     let distanceToNextNote = 0;
 
     window.addEventListener('keydown', event => {
@@ -107,12 +68,7 @@ function GameLogic(props) {
         // console.log('next target: ', nextTargetTick);
         console.log('how close: ', inputTick - desiredTarget);
     }
-
-
-
-    const currentTarget = useSelector(state => state.currentTarget);
-    const dispatch = useDispatch();    
-    
+        
     return (
         <div>
             <ToneInit/>
@@ -126,7 +82,7 @@ function GameLogic(props) {
             <button onClick={() => setListen(true)}>Fastest Latency</button>
             <br />
             <button onClick={() => setListen(false)}>Playback Latency (stops sound)</button>
-            <GridDisplay boxes={boxes} toggleBox={toggleBox}/>
+            <UI />
         </div>
     )
 }
