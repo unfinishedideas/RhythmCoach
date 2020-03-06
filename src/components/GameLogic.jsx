@@ -109,7 +109,7 @@ function GameLogic(props) {
 
     return (
         <div>
-            <ToneInit getState={getState}/>
+            <ToneInit/>
             <h2>GameLogic.js loaded</h2>
             <h3>Press any key to log time in ticks and play a sound</h3>
             <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
