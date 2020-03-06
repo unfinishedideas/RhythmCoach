@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function GridBox() {
+function GridBox(props) {
+
+    const toggleBox = () => {props.toggleBox(props.id)}
 
     const gridBoxStyle = {
         height: '30px',
         width: '30px',
-        backgroundColor: 'blue'
+        backgroundColor: props.isOn? 'red' : 'blue',
+        border: '2px solid black',
+        color: 'red'
     }
-    // const [isOn, displayOn] = useState(false);
-
     return(
-        <div className={gridBoxStyle}/>
+        <div style={gridBoxStyle} onClick={toggleBox} />
     );
 };
+    
 
+GridBox.propTypes = {
+    toggleBox: PropTypes.func,
+    isOn: PropTypes.bool,
+    id: PropTypes.number
+}
 
 export default GridBox;
