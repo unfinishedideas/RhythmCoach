@@ -20,14 +20,10 @@ function GridDisplay() {
             id: 4
         },
     ]
-
-    // const [isOn, flipIsOn] = useState(false);
-
     const [boxes, updateBoxes] = useState(gridBoxes)
 
-    // const toggleBox = () => {flipIsOn(!isOn)}
     const toggleBox = (id) => {
-        let updatedBoxes = gridBoxes.map(b => {
+        let updatedBoxes = boxes.map(b => {
             if (b.id === id) b.isOn = !b.isOn;
             return b;
         });
@@ -36,12 +32,12 @@ function GridDisplay() {
 
     return (
         <div style={gridDisplayStyle}>
-            {gridBoxes.map((b, i) =>(
+            {boxes.map((b, i) => (
                 <GridBox 
-                isOn={b.isOn}
-                key={i}
-                id={b.id}
-                toggleBox={toggleBox}
+                    isOn={b.isOn}
+                    key={i}
+                    id={b.id}
+                    toggleBox={toggleBox}
                 />
             ))}
         </div>
