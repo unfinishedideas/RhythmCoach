@@ -1,5 +1,5 @@
 const targetingReducer = (state = 0, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'UPDATE_TARGET':
             return state + 1;
         default:

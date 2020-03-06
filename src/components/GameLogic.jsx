@@ -8,7 +8,8 @@ import snareSample from './../audio/snare.ogg';
 import GridDisplay from './GridDisplay';
 
 import ToneInit from './ToneInit'
-
+import { changeCurrentTarget } from './../actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 function GameLogic(props) {
     // Initializing ====================================================================================================
@@ -107,6 +108,11 @@ function GameLogic(props) {
         console.log('how close: ', inputTick - desiredTarget);
     }
 
+
+
+    const currentTarget = useSelector(state => state.currentTarget);
+    const dispatch = useDispatch();    
+    
     return (
         <div>
             <ToneInit/>
@@ -115,6 +121,8 @@ function GameLogic(props) {
             <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
             <button onClick={toggleTransport}>Start/Stop</button>
             <br />
+            <h1>current target: {currentTarget}</h1>
+            <button onClick={() => dispatch(changeCurrentTarget())}>Add target</button>
             <button onClick={() => setListen(true)}>Fastest Latency</button>
             <br />
             <button onClick={() => setListen(false)}>Playback Latency (stops sound)</button>
