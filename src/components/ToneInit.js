@@ -3,9 +3,12 @@ import * as Tone from 'tone';
 import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { changeCurrentTarget, updateTargetDistance } from './../actions';
 
 function ToneInit (props) {
+    console.log('tone init rendered')
+    const dispatch = useDispatch();
     let looper = new Tone.Loop(song, '16n');
 
     let kickBuffer = new Tone.Buffer(kickSample);
@@ -41,7 +44,7 @@ function ToneInit (props) {
     let aboutToLoop = false;
     let remainingTicks = 0;
     let distanceToNextNote = 0;
-    
+
     function song() {
         // Rhythm Key
         // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
@@ -66,6 +69,7 @@ function ToneInit (props) {
 
         // Set the ticks for the target note
         // If the transport is about to loop get a more accurate reading of the target ticks coming up. .position[0] changes based on # of measures.
+        // Resets on the last 16th note which could be problematic
         if (Tone.Transport.position[0] === '1' && Tone.Transport.position[2] === '3' && Tone.Transport.position[4] === '3') {
             aboutToLoop = true;
         }
@@ -74,7 +78,8 @@ function ToneInit (props) {
             nextTargetTick = (targetRhythmArray[0] * sixteenthSpacing) - sixteenthSpacing;
             distanceToNextNote = nextTargetTick + remainingTicks;
             targetTick =  remainingTicks * -1;
-
+            dispatch(changeCurrentTarget(remainingTicks))
+            dispatch(updateTargetDistance(distanceToNextNote));
             aboutToLoop = false;
             console.log('%%%%%%%%');
             console.log('loop!');
@@ -97,7 +102,8 @@ function ToneInit (props) {
                 nextTargetTick += + (sixteenthSpacing * 16)
             }
             distanceToNextNote = nextTargetTick - targetTick;
-
+            dispatch(changeCurrentTarget(targetTick));
+            dispatch(updateTargetDistance(distanceToNextNote));
         }
 
         // Backing track playback

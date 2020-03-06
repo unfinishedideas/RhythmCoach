@@ -1,5 +1,5 @@
 import React from 'react';
-import ToneTest from './components/ToneTest';
+// import ToneTest from './components/ToneTest';
 import GameLogic from './components/GameLogic';
 
 function App() {
