@@ -46,6 +46,7 @@ function ToneTest() {
     }
   );
 
+  // Variables for song()
   let targetTick = 0;
   let counter = 1;
   let firstTick = null;
@@ -55,15 +56,15 @@ function ToneTest() {
   let aboutToLoop = false;
   let remainingTicks = 0;
   let distanceToNextNote = 0;
+  const targetRhythmArray = [1, 5, 10];
 
   function song() {
     // Rhythm Key
     // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a
     // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
     const hatRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
-    const snareRhythmArray = [1, 5, 13];
+    const snareRhythmArray = [5, 13];
     const kickRhythmArray = [1, 3, 0, 9, 10, 12];
-    const targetRhythmArray = [1, 5, 13];
 
     // Calculate the distance between ticks. 16th spacing
     if (counter === 1) {
@@ -77,32 +78,47 @@ function ToneTest() {
 
     // Set the ticks for the target note
     // If the transport is about to loop get a more accurate reading of the target ticks coming up. .position[0] changes based on # of measures.
-    if (Tone.Transport.position[0] === "0") {
+    console.log(Tone.Transport.position);
+    if (
+      Tone.Transport.position[0] === "0" &&
+      Tone.Transport.position[2] === "0" &&
+      Tone.Transport.position[4] === "0"
+    ) {
       aboutToLoop = false;
+      console.log("%%%%%%%%");
+      console.log("done loop");
+      console.log("%%%%%%%%");
     }
+
     if (
       Tone.Transport.position[0] === "1" &&
-      Tone.Transport.position[2] === "3" &&
-      Tone.Transport.position[4] === "3"
+      Tone.Transport.position[2] === "0" &&
+      Tone.Transport.position[4] === "0"
     ) {
       aboutToLoop = true;
+      console.log("about to loop");
     }
-    if (aboutToLoop === true) {
+    if (
+      aboutToLoop === true &&
+      targetRhythmArray.indexOf(counter) + 2 > targetRhythmArray.length
+    ) {
       remainingTicks =
         sixteenthSpacing * 15 * targetRhythmArray[targetRhythmArray.length - 1];
       nextTargetTick =
         targetRhythmArray[0] * sixteenthSpacing - sixteenthSpacing;
       distanceToNextNote = nextTargetTick + remainingTicks;
       targetTick = remainingTicks * -1;
-      dispatch(changeCurrentTarget(remainingTicks));
-      dispatch(updateTargetDistance(distanceToNextNote));
-      console.log("%%%%%%%%");
-      console.log("loop!");
+
+      //   dispatch(changeCurrentTarget(remainingTicks));
+      //   dispatch(updateTargetDistance(distanceToNextNote));
+
+      //   console.log("%%%%%%%%");
+      console.log("calculating new targets!");
       // console.log('currentTarget:', targetTick)
       // console.log('remainingTicks', remainingTicks);
       // console.log('next target tick:', nextTargetTick);
       // console.log('distance to next: ', distanceToNextNote);
-      console.log("%%%%%%%%");
+      //   console.log("%%%%%%%%");
     } else if (targetRhythmArray.includes(counter)) {
       targetTick = Tone.Transport.getTicksAtTime();
 
@@ -118,13 +134,13 @@ function ToneTest() {
         targetRhythmArray[nextIndex] * sixteenthSpacing -
         sixteenthSpacing;
 
+      // Calculate the distance to the next note
+      distanceToNextNote = nextTargetTick - targetTick;
+
       // Add a measure of 16th notes to the count if it's a new measure
       if (nextIndex === 0) {
         nextTargetTick += +(sixteenthSpacing * 16);
       }
-      distanceToNextNote = nextTargetTick - targetTick;
-      dispatch(changeCurrentTarget(targetTick));
-      dispatch(updateTargetDistance(distanceToNextNote));
     }
 
     // Backing track playback
@@ -176,10 +192,13 @@ function ToneTest() {
     let desiredTarget = targetTick;
     let inputTick = Tone.Transport.getTicksAtTime();
 
-    if (aboutToLoop) {
-      console.log("hi mom");
+    if (
+      aboutToLoop === true &&
+      targetRhythmArray.indexOf(counter) + 2 > targetRhythmArray.length
+    ) {
+      console.log("hi");
       let totalTicks = sixteenthSpacing * 15;
-      inputTick = (inputTick - totalTicks) * -1;
+      inputTick = (totalTicks - inputTick) * -1;
     }
 
     let difference = inputTick - desiredTarget;
