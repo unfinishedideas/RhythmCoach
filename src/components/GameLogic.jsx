@@ -56,7 +56,7 @@ function ToneTest() {
   let aboutToLoop = false;
   let remainingTicks = 0;
   let distanceToNextNote = 0;
-  const targetRhythmArray = [1, 5, 10];
+  const targetRhythmArray = [5, 10];
 
   function song() {
     // Rhythm Key
@@ -77,7 +77,7 @@ function ToneTest() {
     }
 
     // Set the ticks for the target note
-    // If the transport is about to loop get a more accurate reading of the target ticks coming up. .position[0] changes based on # of measures.
+    // Check for loops with .position[#]. That position[0] value on 'about to loop' should change based on # of measures.
     console.log(Tone.Transport.position);
     if (
       Tone.Transport.position[0] === "0" &&
@@ -102,23 +102,27 @@ function ToneTest() {
       aboutToLoop === true &&
       targetRhythmArray.indexOf(counter) + 2 > targetRhythmArray.length
     ) {
+      let totalTicks = sixteenthSpacing * 15;
+
+      // Gets the distance between the last 16th note and 0
       remainingTicks =
-        sixteenthSpacing * 15 * targetRhythmArray[targetRhythmArray.length - 1];
+        totalTicks -
+        sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1];
+
       nextTargetTick =
         targetRhythmArray[0] * sixteenthSpacing - sixteenthSpacing;
+
       distanceToNextNote = nextTargetTick + remainingTicks;
       targetTick = remainingTicks * -1;
 
       //   dispatch(changeCurrentTarget(remainingTicks));
       //   dispatch(updateTargetDistance(distanceToNextNote));
 
-      //   console.log("%%%%%%%%");
       console.log("calculating new targets!");
-      // console.log('currentTarget:', targetTick)
+      console.log("currentTarget:", targetTick);
       // console.log('remainingTicks', remainingTicks);
-      // console.log('next target tick:', nextTargetTick);
+      console.log("next target tick:", nextTargetTick);
       // console.log('distance to next: ', distanceToNextNote);
-      //   console.log("%%%%%%%%");
     } else if (targetRhythmArray.includes(counter)) {
       targetTick = Tone.Transport.getTicksAtTime();
 
@@ -186,7 +190,7 @@ function ToneTest() {
   }
 
   // Game stuff ======================================================================================================
-
+  // THIS HAS ISSUES! It's setting the new target too soon (might be up top too in about to loop section)
   function compareTime() {
     // Target is currently wrong on loop
     let desiredTarget = targetTick;
