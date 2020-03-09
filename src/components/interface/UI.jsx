@@ -3,34 +3,23 @@ import React from "react";
 import { changeCurrentTarget } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import Counter from './controlpanel/Counter';
-import RhythmDisplay from './controlpanel/RhythmDisplay';
-import Transport from './controlpanel/Transport';
-import ScoreBox from "../Scorebox";
-import AccuracyMeter from "../AccuracyMeter";
-import Instructions from '../Instructions';
+import Counter from './Counter';
+import RhythmDisplay from './RhythmDisplay';
+import Transport from './Transport';
+import ScoreBox from "./Scorebox";
+import AccuracyMeter from "./AccuracyMeter";
+import Instructions from './Instructions';
+import RhythmList from './RhythmList';
 
 function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
   const dispatch = useDispatch();
 
-  const rhythmSelector = (selection) => {
-    // dispatch(changeCurrentRhythm(selection))
-    console.log("hey", selection);
-    // props.toggleTransport();
-  };
+
 
   return (
     <div style={mainUiStyle}>
-      <div style={listStyle}>
-        <h3>Rhythm List</h3>
-        <h4>1/4 Note</h4>
-        <button onClick={() => (rhythmSelector(1))}>Hey</button>
-        <h4>1/8 Note</h4>
-        <button onClick={() => (rhythmSelector(2))}>Hey</button>
-        <h4>1/16 Note</h4>
-        <button onClick={() => (rhythmSelector(3))}>Hey</button>
-      </div>
+      <RhythmList isShown={true} />
       <div style={controlsStyle}>
         <div style={mainBodyStyle}>
           <RhythmDisplay />
@@ -56,15 +45,10 @@ const mainUiStyle = {
   maxWidth: '1200px',
   margin: '0 auto'
 };
-const listStyle = {
-  // border: "1px solid black",
-  width: '15%',
-  padding: '1rem',
-  background: 'rgb(100,100,100)'
-};
+
 const controlsStyle = {
   // border: "1px solid black",
-  width: '85%',
+  // width: '85%',
   // padding: '1rem',
   background: 'rgb(50,50,50)'
 };

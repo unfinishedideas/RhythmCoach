@@ -1,6 +1,6 @@
 import React from 'react';
-import GridDisplay from "./../GridDisplay";
-import Counter from './Counter'
+import GridDisplay from "./GridDisplay";
+import Counter from './Counter';
 
 function RhythmDisplay() {
     return (
@@ -21,6 +21,7 @@ const rhythmComponentStyle = {
     gridColumn: '1/4',
     background: 'rgb(25,25,25)',
     border: '2px solid rgb(150,150,150)',
+    marginLeft: '20px'
     // textAlign: 'center'
 }
 
@@ -36,5 +37,7 @@ const rhythmDisplayStyle = {
     padding: '1rem',
     display: 'flex',
 }
+
+
 
 export default RhythmDisplay;
