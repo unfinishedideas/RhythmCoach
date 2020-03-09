@@ -116,7 +116,7 @@ const beatText = {
   width: '24px',
   textAlign: 'center',
   marginTop: '0',
-  color: 'red'
+  color: 'yellow'
 }
 
 const gridDisplayStyle = {

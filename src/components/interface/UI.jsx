@@ -8,6 +8,7 @@ import RhythmDisplay from './controlpanel/RhythmDisplay';
 import Transport from './controlpanel/Transport';
 import ScoreBox from "../Scorebox";
 import AccuracyMeter from "../AccuracyMeter";
+import Instructions from '../Instructions';
 
 function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
@@ -36,6 +37,7 @@ function UI(props) {
           <AccuracyMeter />
           <Transport />
           <ScoreBox />
+          <Instructions />
         </div>
 
 
@@ -63,7 +65,7 @@ const listStyle = {
 const controlsStyle = {
   // border: "1px solid black",
   width: '85%',
-  padding: '1rem',
+  // padding: '1rem',
   background: 'rgb(50,50,50)'
 };
 const mainBodyStyle = {

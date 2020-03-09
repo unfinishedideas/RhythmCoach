@@ -5,7 +5,7 @@ import Counter from './Counter'
 function RhythmDisplay() {
     return (
         <div style={rhythmComponentStyle}>
-            <p style={rhythmTitleStyle}>Rhythm Display</p>
+            {/* <p style={rhythmTitleStyle}>Rhythm Display</p> */}
             <div style={rhythmDisplayStyle}>
                 <Counter />
                 <GridDisplay />
