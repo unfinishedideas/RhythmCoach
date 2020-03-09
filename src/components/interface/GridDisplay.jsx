@@ -18,6 +18,54 @@ function GridDisplay() {
     {
       isOn: false,
       id: 4
+    },
+    {
+      isOn: false,
+      id: 5
+    },
+    {
+      isOn: false,
+      id: 6
+    },
+    {
+      isOn: false,
+      id: 7
+    },
+    {
+      isOn: false,
+      id: 8
+    },
+    {
+      isOn: false,
+      id: 9
+    },
+    {
+      isOn: false,
+      id: 10
+    },
+    {
+      isOn: false,
+      id: 11
+    },
+    {
+      isOn: false,
+      id: 12
+    },
+    {
+      isOn: false,
+      id: 13
+    },
+    {
+      isOn: false,
+      id: 14
+    },
+    {
+      isOn: false,
+      id: 15
+    },
+    {
+      isOn: false,
+      id: 16
     }
   ];
   const [boxes, updateBoxes] = useState(gridBoxes);
@@ -41,9 +89,9 @@ function GridDisplay() {
 
 const gridDisplayStyle = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
-  width: "200px",
-  margin: "5rem"
+  gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+  gridColumnGap: '10px',
+  width: "200px"
 };
 
 export default GridDisplay;

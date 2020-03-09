@@ -4,6 +4,9 @@ function Transport() {
     return (
         <div>
             <p>Transport</p>
+            <button>Start</button>
+            <button>Tap</button>
+            <button>Stop</button>
         </div>
     )
 }

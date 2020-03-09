@@ -21,16 +21,16 @@ function ToneTest() {
   let newSnareBuffer = new Tone.Buffer(snareSample);
   let hatBuffer = new Tone.Buffer(hatSample);
 
-  let kickPlayer = new Tone.Player(kickBuffer, function() {
+  let kickPlayer = new Tone.Player(kickBuffer, function () {
     console.log("kick sample initialized");
   }).toMaster();
-  let snarePlayer = new Tone.Player(snareBuffer, function() {
+  let snarePlayer = new Tone.Player(snareBuffer, function () {
     console.log("snare sample initialized");
   }).toMaster();
-  let newSnarePlayer = new Tone.Player(newSnareBuffer, function() {
+  let newSnarePlayer = new Tone.Player(newSnareBuffer, function () {
     console.log("snare sample initialized");
   }).toMaster();
-  let hatPlayer = new Tone.Player(hatBuffer, function() {
+  let hatPlayer = new Tone.Player(hatBuffer, function () {
     console.log("hat sample initialized");
   }).toMaster();
 
@@ -176,10 +176,12 @@ function ToneTest() {
   }
 
   window.addEventListener("keydown", event => {
-    if (listening) {
-      compareTime();
+    if (event.keyCode === 83) {
+      if (listening) {
+        compareTime();
+      }
+      newSnarePlayer.start();
     }
-    newSnarePlayer.start();
   });
 
   function toggleTransport() {
@@ -227,7 +229,7 @@ function ToneTest() {
 
   return (
     <div>
-      <h2>ToneTest.js loaded</h2>
+      {/* <h2>ToneTest.js loaded</h2>
       <h3>Press any key to log time in ticks and play a sound</h3>
       <h3>
         Check console log to see current ticks of keypress / effect of
@@ -237,7 +239,7 @@ function ToneTest() {
       <br />
       <button onClick={() => (listening = true)}>Listening</button>
       <br />
-      <button onClick={() => (listening = false)}>Playback</button>
+      <button onClick={() => (listening = false)}>Playback</button> */}
       <UI toggleTransport={toggleTransport} />
     </div>
   );
