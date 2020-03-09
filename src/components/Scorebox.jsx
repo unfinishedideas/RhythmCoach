@@ -14,7 +14,7 @@ function ScoreBox() {
 const scoreComponentStyle = {
     textAlign: 'center',
     justifySelf: 'center',
-    alignSelf: 'end'
+    alignSelf: 'end',
 }
 
 const scoreBoxStyle = {

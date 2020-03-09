@@ -5,7 +5,7 @@ import Counter from './Counter'
 function RhythmDisplay() {
     return (
         <div style={rhythmComponentStyle}>
-            <p>RhythmDisplay</p>
+            <p style={rhythmTitleStyle}>Rhythm Display</p>
             <div style={rhythmDisplayStyle}>
                 <Counter />
                 <GridDisplay />
@@ -18,7 +18,15 @@ const rhythmComponentStyle = {
     width: '100%',
     justifySelf: 'center',
     alignSelf: 'end',
-    gridColumn: '1/3'
+    gridColumn: '1/4',
+    background: 'rgb(25,25,25)',
+    border: '2px solid rgb(150,150,150)',
+    // textAlign: 'center'
+}
+
+const rhythmTitleStyle = {
+    color: 'red',
+    margin: '0 2rem'
 }
 
 const rhythmDisplayStyle = {
@@ -26,9 +34,7 @@ const rhythmDisplayStyle = {
     // overflow: 'auto',
     // width: '100%',
     padding: '1rem',
-    background: 'rgb(25,25,25)',
     display: 'flex',
-    border: '2px solid rgb(150,150,150)'
 }
 
 export default RhythmDisplay;

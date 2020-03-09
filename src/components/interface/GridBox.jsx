@@ -11,7 +11,9 @@ function GridBox(props) {
     width: "20px",
     backgroundColor: props.isOn ? "rgb(255,100,100)" : "rgb(50,50,255)",
     border: "2px solid black",
-    color: "red"
+    color: "red",
+    justifySelf: 'center',
+    alignSelf: 'end',
   };
   return <div style={gridBoxStyle} onClick={toggleBox} />;
 }

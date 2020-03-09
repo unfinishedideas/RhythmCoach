@@ -83,15 +83,47 @@ function GridDisplay() {
       {boxes.map((b, i) => (
         <GridBox isOn={b.isOn} key={i} id={b.id} toggleBox={toggleBox} />
       ))}
+      <p style={beatText}>1</p>
+      <p style={subdivisionText}>e</p>
+      <p style={subdivisionText}>+</p>
+      <p style={subdivisionText}>a</p>
+
+      <p style={beatText}>2</p>
+      <p style={subdivisionText}>e</p>
+      <p style={subdivisionText}>+</p>
+      <p style={subdivisionText}>a</p>
+
+      <p style={beatText}>3</p>
+      <p style={subdivisionText}>e</p>
+      <p style={subdivisionText}>+</p>
+      <p style={subdivisionText}>a</p>
+
+      <p style={beatText}>4</p>
+      <p style={subdivisionText}>e</p>
+      <p style={subdivisionText}>+</p>
+      <p style={subdivisionText}>a</p>
+
     </div>
   );
+}
+
+const subdivisionText = {
+  width: '24px',
+  textAlign: 'center',
+  marginTop: '0'
+}
+const beatText = {
+  width: '24px',
+  textAlign: 'center',
+  marginTop: '0',
+  color: 'red'
 }
 
 const gridDisplayStyle = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
   gridColumnGap: '10px',
-  width: "200px"
+  width: "100%"
 };
 
 export default GridDisplay;

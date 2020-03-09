@@ -14,7 +14,7 @@ function AccuracyMeter() {
 const meterComponentStyle = {
     textAlign: 'center',
     justifySelf: 'center',
-    alignSelf: 'end'
+    alignSelf: 'end',
 }
 
 const meterBoxStyle = {

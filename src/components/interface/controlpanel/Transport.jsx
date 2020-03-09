@@ -12,7 +12,7 @@ function Transport() {
 const transportStyle = {
     justifySelf: 'center',
     alignSelf: 'end',
-    gridColumn: '1/3',
+    gridColumn: '1/4',
     margin: '1rem',
 }
 

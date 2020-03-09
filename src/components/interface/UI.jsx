@@ -72,7 +72,7 @@ const mainBodyStyle = {
   // justifyContent: 'space-between',
   // padding: '1rem',
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr 1fr'
+  gridTemplateColumns: '1fr 1fr 1fr 1fr'
 }
 
 export default UI;
