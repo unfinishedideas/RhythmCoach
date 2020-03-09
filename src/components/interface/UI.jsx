@@ -10,15 +10,20 @@ import ScoreBox from "./Scorebox";
 import AccuracyMeter from "./AccuracyMeter";
 import Instructions from './Instructions';
 import RhythmList from './RhythmList';
+import MetronomeLight from "./MetronomeLight";
 
 function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
   const dispatch = useDispatch();
 
   const [listIsShown, toggleList] = useState(true);
+  const [instructionsShown, toggleInstructions] = useState(true);
 
   const listHelper = () => {
     toggleList(!listIsShown);
+  };
+  const instructionHelper = () => {
+    toggleInstructions(!instructionsShown);
   };
 
   return (
@@ -27,10 +32,13 @@ function UI(props) {
 
       <div style={mainBodyStyle}>
         <RhythmDisplay />
-        <AccuracyMeter />
+        <div style={topRightStyle}>
+          <MetronomeLight />
+          <AccuracyMeter />
+        </div>
         <Transport />
         <ScoreBox />
-        <Instructions isShown={true} />
+        <Instructions isShown={instructionsShown} instructionHelper={instructionHelper} />
       </div>
     </div>
   );
@@ -55,6 +63,12 @@ const mainBodyStyle = {
   gridTemplateColumns: '1fr 1fr 1fr 1fr',
   gridRowGap: '36px',
   width: '100%'
+}
+
+const topRightStyle = {
+  justifySelf: 'center',
+  alignSelf: 'center',
+  height: '100%'
 }
 
 export default UI;

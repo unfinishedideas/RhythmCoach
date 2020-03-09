@@ -108,12 +108,10 @@ function GridDisplay() {
 }
 
 const subdivisionText = {
-  width: '24px',
   textAlign: 'center',
   marginTop: '0'
 }
 const beatText = {
-  width: '24px',
   textAlign: 'center',
   marginTop: '0',
   color: 'yellow'

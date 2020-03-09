@@ -10,8 +10,10 @@ function Counter() {
 
 const counterBoxStyle = {
     border: '4px black solid',
-    height: '100px',
-    width: '100px',
+    // height: '100px',
+    // width: '100px',
+    height: '8rem',
+    width: '8rem',
     display: 'table',
     background: 'white',
     margin: '1rem',

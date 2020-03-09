@@ -21,16 +21,23 @@ function RhythmList(props) {
     }
 
     const toggleBtnStyle = {
-        width: props.isShown ? '20px' : '100%',
-        height: props.isShown ? '20px' : '100%',
+        width: props.isShown ? '80px' : '100%',
+        height: props.isShown ? '40px' : '100%',
         // transform: props.isShown ? '' : 'rotate(-90deg)',
+    }
+
+    const toggleTextStyle = {
+
+        // transform: props.isShown ? '' : 'rotate(-90deg)',
+        transform: 'rotate(-90deg)',
+        color: 'red'
     }
 
     const toggleList = () => { props.listHelper() }
 
     return (
         <div style={listComponentStyle}>
-            <button style={toggleBtnStyle} onClick={toggleList}></button>
+            <button style={toggleBtnStyle} onClick={toggleList}><span style={toggleTextStyle}>Toggle</span></button>
             <div style={listStyle}>
                 <h3>Rhythm List</h3>
                 <h4>1/4 Note</h4>
