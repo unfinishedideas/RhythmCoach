@@ -2,15 +2,22 @@ import React from 'react';
 
 function AccuracyMeter() {
     return (
-        <div style={meterBoxStyle}>
-            <h3 style={meterTextStyle}>100%</h3>
+        <div style={meterComponentStyle}>
+            <h3>Accuracy</h3>
+            <div style={meterBoxStyle}>
+                <h3 style={meterTextStyle}>100%</h3>
+            </div>
         </div>
     )
 }
 
+const meterComponentStyle = {
+    textAlign: 'center'
+}
+
 const meterBoxStyle = {
-    height: '120px',
-    width: '120px',
+    height: '100px',
+    width: '150px',
     background: 'white',
     display: 'table',
     color: 'rgb(0,255,50)',

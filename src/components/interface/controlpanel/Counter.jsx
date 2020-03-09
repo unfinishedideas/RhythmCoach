@@ -9,13 +9,12 @@ function Counter() {
 }
 
 const counterBoxStyle = {
-    border: '1px solid black',
+    border: '4px black solid',
     height: '100px',
     width: '100px',
     display: 'table',
     background: 'white',
     margin: '1rem',
-    border: '4px black solid'
 }
 const counterStyle = {
     textAlign: 'center',

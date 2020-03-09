@@ -22,7 +22,7 @@ function UI(props) {
   return (
     <div style={mainUiStyle}>
       <div style={listStyle}>
-        <h3>Rhythms</h3>
+        <h3>Rhythm List</h3>
         <h4>1/4 Note</h4>
         <button onClick={() => (rhythmSelector(1))}>Hey</button>
         <h4>1/8 Note</h4>
@@ -32,7 +32,6 @@ function UI(props) {
       </div>
       <div style={controlsStyle}>
         <div style={topPartStyle}>
-          <Counter />
           <RhythmDisplay />
           <AccuracyMeter />
           {/* <div /> */}
@@ -47,36 +46,39 @@ function UI(props) {
 }
 
 const mainUiStyle = {
-  border: "1px solid black",
+  // border: "1px solid black",
   borderRadius: '20px',
   padding: '1rem',
   display: "flex",
-  margin: "5rem",
-  background: 'rgb(50,50,50)',
-  color: 'white'
+  background: 'rgb(150,150,150)',
+  color: 'white',
+  maxWidth: '1200px',
+  margin: '0 auto'
 };
 const listStyle = {
-  border: "1px solid black",
+  // border: "1px solid black",
   width: '15%',
-  padding: '1rem'
+  padding: '1rem',
+  background: 'rgb(100,100,100)'
 };
 const controlsStyle = {
-  border: "1px solid black",
+  // border: "1px solid black",
   width: '85%',
-  padding: '1rem'
+  padding: '1rem',
+  background: 'rgb(50,50,50)'
 };
 const topPartStyle = {
+  // border: '1px solid green',
   display: 'flex',
   justifyContent: 'space-between',
-  border: '1px solid green',
+  padding: '1rem',
 }
 const bottomPartStyle = {
+  // border: '1px solid blue',
   display: 'flex',
   justifyContent: 'space-between',
-  border: '1px solid blue',
   padding: '1rem',
-  background: 'rgb(25,25,25)'
-}
+};
 
 export default UI;
 
