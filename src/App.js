@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 // import ToneTest from './components/ToneTest';
-import GameLogic from './components/GameLogic';
+import ToneEngine from "./components/ToneEngine";
 
 function App() {
   return (
     <div>
       <h1>Rhythminator</h1>
-      <GameLogic/>
+      <ToneEngine />
       {/* <ToneTest/> */}
     </div>
   );
