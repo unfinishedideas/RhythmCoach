@@ -1,6 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Instructions() {
+function Instructions(props) {
+
+    const instructionStyle = {
+        background: 'black',
+        width: '100%',
+        gridColumn: '1/5',
+        padding: '1rem',
+        boxSizing: 'border-box',
+        display: props.isShown ? 'block' : 'none',
+    }
+
     return (
         <div style={instructionStyle}>
             <h3>Instructions</h3>
@@ -9,12 +20,8 @@ function Instructions() {
     )
 }
 
-const instructionStyle = {
-    background: 'black',
-    width: '100%',
-    gridColumn: '1/5',
-    padding: '1rem',
-    boxSizing: 'border-box'
+Instructions.propTypes = {
+    isShown: PropTypes.bool
 }
 
 export default Instructions;

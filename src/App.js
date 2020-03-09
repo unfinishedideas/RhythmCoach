@@ -15,7 +15,7 @@ function App() {
 const heroTextStyle = {
   textAlign: 'center',
   color: 'white',
-  fontSize: '50px',
+  fontSize: '48px',
 
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import GridDisplay from "./GridDisplay";
 import { changeCurrentTarget } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,21 +15,22 @@ function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
   const dispatch = useDispatch();
 
+  const [listIsShown, toggleList] = useState(true);
 
+  const listHelper = () => {
+    toggleList(!listIsShown);
+  };
 
   return (
     <div style={mainUiStyle}>
-      <RhythmList isShown={true} />
-      <div style={controlsStyle}>
-        <div style={mainBodyStyle}>
-          <RhythmDisplay />
-          <AccuracyMeter />
-          <Transport />
-          <ScoreBox />
-          <Instructions />
-        </div>
+      <RhythmList isShown={listIsShown} listHelper={listHelper} />
 
-
+      <div style={mainBodyStyle}>
+        <RhythmDisplay />
+        <AccuracyMeter />
+        <Transport />
+        <ScoreBox />
+        <Instructions isShown={true} />
       </div>
     </div>
   );
@@ -46,19 +47,14 @@ const mainUiStyle = {
   margin: '0 auto'
 };
 
-const controlsStyle = {
-  // border: "1px solid black",
-  // width: '85%',
-  // padding: '1rem',
-  background: 'rgb(50,50,50)'
-};
 const mainBodyStyle = {
   // border: '1px solid green',
-  // display: 'flex',
-  // justifyContent: 'space-between',
-  // padding: '1rem',
+  background: 'rgb(50,50,50)',
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr 1fr 1fr'
+  padding: '1rem',
+  gridTemplateColumns: '1fr 1fr 1fr 1fr',
+  gridRowGap: '36px',
+  width: '100%'
 }
 
 export default UI;

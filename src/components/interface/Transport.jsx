@@ -17,19 +17,22 @@ const transportStyle = {
 }
 
 const startButtonStyle = {
-    height: '150px',
-    width: '150px',
-    margin: '0 1em'
+    height: '148px',
+    width: '148px',
+    margin: '0 1em',
+    fontSize: '24px'
 }
 const tapButtonStyle = {
-    height: '150px',
-    width: '150px',
-    margin: '0 1em'
+    height: '148px',
+    width: '148px',
+    margin: '0 1em',
+    fontSize: '24px'
 }
 const stopButtonStyle = {
-    height: '150px',
-    width: '150px',
-    margin: '0 1em'
+    height: '148px',
+    width: '148px',
+    margin: '0 1em',
+    fontSize: '24px'
 }
 
 export default Transport;

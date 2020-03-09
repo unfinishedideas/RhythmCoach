@@ -20,7 +20,7 @@ const counterStyle = {
     textAlign: 'center',
     display: 'table-cell',
     verticalAlign: 'middle',
-    fontSize: '50px',
+    fontSize: '48px',
     color: 'rgb(0,255,100)',
     textShadow: '2px 2px black'
 }

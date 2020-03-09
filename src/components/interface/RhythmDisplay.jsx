@@ -20,8 +20,9 @@ const rhythmComponentStyle = {
     alignSelf: 'end',
     gridColumn: '1/4',
     background: 'rgb(25,25,25)',
-    border: '2px solid rgb(150,150,150)',
-    marginLeft: '20px'
+    border: '4px solid rgb(150,150,150)',
+    // boxSizing: 'border-box',
+    // marginLeft: '20px'
     // textAlign: 'center'
 }
 
