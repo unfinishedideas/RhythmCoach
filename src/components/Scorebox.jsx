@@ -12,7 +12,9 @@ function ScoreBox() {
 };
 
 const scoreComponentStyle = {
-    textAlign: 'center'
+    textAlign: 'center',
+    justifySelf: 'center',
+    alignSelf: 'end'
 }
 
 const scoreBoxStyle = {

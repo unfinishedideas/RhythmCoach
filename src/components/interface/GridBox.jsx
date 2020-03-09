@@ -9,7 +9,7 @@ function GridBox(props) {
   const gridBoxStyle = {
     height: "20px",
     width: "20px",
-    backgroundColor: props.isOn ? "red" : "blue",
+    backgroundColor: props.isOn ? "rgb(255,100,100)" : "rgb(50,50,255)",
     border: "2px solid black",
     color: "red"
   };

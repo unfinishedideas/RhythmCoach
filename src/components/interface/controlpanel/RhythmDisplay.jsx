@@ -15,7 +15,10 @@ function RhythmDisplay() {
 }
 
 const rhythmComponentStyle = {
-    width: '100%'
+    width: '100%',
+    justifySelf: 'center',
+    alignSelf: 'end',
+    gridColumn: '1/3'
 }
 
 const rhythmDisplayStyle = {

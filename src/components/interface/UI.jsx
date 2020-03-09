@@ -31,15 +31,14 @@ function UI(props) {
         <button onClick={() => (rhythmSelector(3))}>Hey</button>
       </div>
       <div style={controlsStyle}>
-        <div style={topPartStyle}>
+        <div style={mainBodyStyle}>
           <RhythmDisplay />
           <AccuracyMeter />
-          {/* <div /> */}
-        </div>
-        <div style={bottomPartStyle}>
           <Transport />
           <ScoreBox />
         </div>
+
+
       </div>
     </div>
   );
@@ -67,18 +66,14 @@ const controlsStyle = {
   padding: '1rem',
   background: 'rgb(50,50,50)'
 };
-const topPartStyle = {
+const mainBodyStyle = {
   // border: '1px solid green',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '1rem',
+  // display: 'flex',
+  // justifyContent: 'space-between',
+  // padding: '1rem',
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr'
 }
-const bottomPartStyle = {
-  // border: '1px solid blue',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '1rem',
-};
 
 export default UI;
 
