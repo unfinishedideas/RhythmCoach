@@ -28,15 +28,12 @@ function RhythmList(props) {
 
     return (
         <div style={styles.listComponentStyle}>
-            <h3 style={{ margin: '0' }}>Rhythm List</h3>
+            <h3 style={{ margin: '0' }}>Backing Track</h3>
             <button style={styles.toggleBtnStyle} onClick={toggleList}>Toggle</button>
             <div style={styles.listStyle}>
-                <h4>1/4 Note</h4>
-                <button onClick={() => (rhythmSelector(1))}>Hey</button>
-                <h4>1/8 Note</h4>
-                <button onClick={() => (rhythmSelector(2))}>Hey</button>
-                <h4>1/16 Note</h4>
-                <button onClick={() => (rhythmSelector(3))}>Hey</button>
+                <button onClick={() => (rhythmSelector(1))}>Track 1</button>
+                <button onClick={() => (rhythmSelector(2))}>Track 2</button>
+                <button onClick={() => (rhythmSelector(3))}>Track 3</button>
             </div>
         </div>
     )

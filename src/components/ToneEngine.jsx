@@ -73,14 +73,14 @@ function ToneTest() {
     } else if (counter === 2) {
       secondTick = Tone.Transport.getTicksAtTime();
     }
-    if (secondTick !== null && counter !== 1) {
+    if (secondTick !== null && counter === 3) {
       sixteenthSpacing = secondTick - firstTick;
     }
 
-    // Metronome
+    // Metronome (using next 16th note on 'else if' to reduce redux calls)
     if (counter === 1 || counter === 5 || counter === 9 || counter === 13) {
       dispatch(metronomeSwitch(true));
-    } else {
+    } else if (counter === 2 || counter === 6 || counter === 10 || counter === 14) {
       dispatch(metronomeSwitch(false));
     }
 
@@ -127,8 +127,6 @@ function ToneTest() {
       // console.log('currentNote ticks: ', targetTick)
       // console.log('next target ticks: ', nextTargetTick)
       // console.log('------')
-      // dispatch(changeCurrentTarget(remainingTicks));
-      // dispatch(updateTargetDistance(distanceToNextNote));
     }
 
     // Backing track playback
@@ -167,13 +165,13 @@ function ToneTest() {
   function toggleTransport() {
     if (transportOn) {
       console.log('stopping');
-      Tone.Transport.stop();
       transportOn = false;
+      Tone.Transport.stop();
     } else {
       console.log('starting');
-      Tone.Transport.start();
-      transportOn = true;
       counter = 1;
+      transportOn = true;
+      Tone.Transport.start();
     }
   }
 
@@ -181,15 +179,15 @@ function ToneTest() {
 
   function compareTime() {
     // Target is currently wrong on loop
-    let desiredTarget = targetTick;
     let inputTick = Tone.Transport.getTicksAtTime();
+    let desiredTarget = targetTick;
 
     let difference = inputTick - desiredTarget;
 
     if (difference > (distanceToNextNote / 2)) {
       desiredTarget = nextTargetTick;
+      difference = inputTick - desiredTarget
     };
-
     dispatch(updateAccuracy(difference));
 
     console.log('----------------------------');

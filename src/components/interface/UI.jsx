@@ -32,7 +32,7 @@ function UI(props) {
         <RhythmDisplay />
         <MessageBox metronomeOn={props.state.metronomeOn} />
         <Transport />
-        <ScoreBox title={'Accuracy'} value={'100%'} />
+        <ScoreBox title={'Accuracy'} value={props.state.accuracyRating} />
         <ScoreBox title={'Score'} value={'4000'} />
       </div>
       <RhythmList isShown={listIsShown} listHelper={listHelper} />
