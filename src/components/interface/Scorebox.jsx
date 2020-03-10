@@ -44,7 +44,7 @@ const scoreStyle = {
 
 ScoreBox.propTypes = {
     title: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.number,
 }
 
 export default ScoreBox;

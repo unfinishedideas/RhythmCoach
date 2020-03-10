@@ -4,7 +4,7 @@ import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
 import { useDispatch } from "react-redux";
-import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch } from "./../actions";
+import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch, updateRhythm } from "./../actions";
 import UI from "./interface/UI";
 
 function ToneTest() {
@@ -54,6 +54,7 @@ function ToneTest() {
   let aboutToLoop = false;
   let remainingTicks = 0;
   let distanceToNextNote = 0;
+  let targetRhythmArray = [5, 13];
 
   function song() {
     // Rhythm Key
@@ -62,7 +63,6 @@ function ToneTest() {
     const hatRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
     const snareRhythmArray = [5, 13];
     const kickRhythmArray = [1, 3, 0, 9, 10, 12];
-    const targetRhythmArray = [5, 13];
     // const targetRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
     // const targetRhythmArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     // const targetRhythmArray = [1,3,4,5,7,11,13]
@@ -100,12 +100,12 @@ function ToneTest() {
       // dispatch(changeCurrentTarget(remainingTicks));
       // dispatch(updateTargetDistance(distanceToNextNote));
 
-      console.log('%%%%%%%%');
-      console.log('loop!');
+      // console.log('%%%%%%%%');
+      // console.log('loop!');
       // console.log('remainingTicks', remainingTicks);
       // console.log('next target tick:', nextTargetTick);
       // console.log('distance to next: ', distanceToNextNote);
-      console.log('%%%%%%%%');
+      // console.log('%%%%%%%%');
     }
     else if (targetRhythmArray.includes(counter)) {
       targetTick = Tone.Transport.getTicksAtTime();
@@ -153,27 +153,6 @@ function ToneTest() {
     }
   }
 
-  window.addEventListener("keydown", event => {
-    if (event.keyCode === 83) {
-      if (listening) {
-        compareTime();
-      }
-      snarePlayer.start();
-    }
-  });
-
-  function toggleTransport() {
-    if (transportOn) {
-      console.log('stopping');
-      transportOn = false;
-      Tone.Transport.stop();
-    } else {
-      console.log('starting');
-      counter = 1;
-      transportOn = true;
-      Tone.Transport.start();
-    }
-  }
 
   // Game stuff ======================================================================================================
 
@@ -190,21 +169,69 @@ function ToneTest() {
     };
     dispatch(updateAccuracy(difference));
 
-    console.log('----------------------------');
+    // console.log('----------------------------');
     // console.log('distance between rhythms: ', distanceToNextNote)
-    console.log('target: ', desiredTarget);
-    console.log('input: ', inputTick);
+    // console.log('target: ', desiredTarget);
+    // console.log('input: ', inputTick);
     // console.log('next target: ', nextTargetTick);
-    console.log('how close: ', difference);
+    // console.log('how close: ', difference);
   }
 
+  function updateRhythm(newArray) {
+    targetRhythmArray = newArray;
+    dispatch(updateRhythm(targetRhythmArray));
+  }
+
+  // User Input / Controls
+  window.addEventListener("keydown", event => {
+    if (event.keyCode === 83) {
+      if (listening) {
+        compareTime();
+      }
+      playUserSound();
+    }
+  });
+
+  function playUserSound() {
+    snarePlayer.start();
+  }
+
+  function toggleTransport() {
+    if (transportOn) {
+      console.log('stopping');
+      transportOn = false;
+      Tone.Transport.stop();
+    } else {
+      console.log('starting');
+      counter = 1;
+      transportOn = true;
+      Tone.Transport.start();
+    }
+  }
+
+  function startTransport() {
+    if (!transportOn) {
+      counter = 1;
+      looper.start(0);
+      Tone.Transport.start();
+      transportOn = true
+    };
+  }
+  function stopTransport() {
+    if (transportOn) {
+      Tone.Transport.stop();
+      dispatch(metronomeSwitch(false));
+      transportOn = false
+    };
+  }
   return (
     <div>
       <h2>ToneTest.js loaded</h2>
       <h3>Press any key to log time in ticks and play a sound</h3>
       <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
       <button onClick={toggleTransport}>Start/Stop</button>
-      <UI />
+      <button onClick={() => { updateRhythm([1, 2, 3, 4]) }}>Temp updater</button>
+      <UI onStartTransport={startTransport} onStopTransport={stopTransport} onCompareTime={compareTime} onPlayUserSound={playUserSound} />
     </div>
   )
 }

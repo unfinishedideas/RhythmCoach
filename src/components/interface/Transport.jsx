@@ -1,11 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
-function Transport() {
+
+function Transport(props) {
+    const compareTime = () => {
+        props.onPlayUserSound()
+        props.onCompareTime();
+    }
+    const startTransport = () => {
+        props.onStartTransport();
+    }
+    const stopTransport = () => {
+        props.onStopTransport();
+    }
+
     return (
         <div style={styles.transportStyle}>
-            <button style={styles.btnStyle}>Tap</button>
-            <button style={styles.btnStyle}>Start</button>
-            <button style={styles.btnStyle}>Stop</button>
+            <button style={styles.btnStyle} onClick={compareTime}>Tap</button>
+            <button style={styles.btnStyle} onClick={startTransport}>Start</button>
+            <button style={styles.btnStyle} onClick={stopTransport}>Stop</button>
         </div>
     )
 }
@@ -25,6 +38,13 @@ const styles = {
         borderRadius: '20px',
         boxShadow: '3px 3px black'
     },
+}
+
+Transport.propTypes = {
+    onStartTransport: PropTypes.func,
+    onStopTransport: PropTypes.func,
+    onCompareTime: PropTypes.func,
+    onPlayUserSound: PropTypes.func
 }
 
 export default Transport;

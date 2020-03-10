@@ -25,3 +25,10 @@ export const metronomeSwitch = toggleSwitch => {
     payload: toggleSwitch
   }
 }
+
+export const updateRhythm = newRhythm => {
+  return {
+    type: "UPDATE_RHYTHM",
+    payload: newRhythm
+  }
+}

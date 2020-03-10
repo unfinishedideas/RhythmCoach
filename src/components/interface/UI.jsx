@@ -29,9 +29,9 @@ function UI(props) {
     <div style={styles.mainUiStyle}>
 
       <div style={styles.controllerStyle}>
-        <RhythmDisplay />
+        <RhythmDisplay targetArray={props.state.targetArray} />
         <MessageBox metronomeOn={props.state.metronomeOn} />
-        <Transport />
+        <Transport onStartTransport={props.onStartTransport} onStopTransport={props.onStopTransport} onCompareTime={props.onCompareTime} onPlayUserSound={props.onPlayUserSound} />
         <ScoreBox title={'Accuracy'} value={props.state.accuracyRating} />
         <ScoreBox title={'Score'} value={'4000'} />
       </div>
@@ -74,7 +74,11 @@ const styles = {
 }
 
 UI.propTypes = {
-  toggleTransport: PropTypes.func
+  toggleTransport: PropTypes.func,
+  onStartTransport: PropTypes.func,
+  onStopTransport: PropTypes.func,
+  onCompareTime: PropTypes.func,
+  onPlayUserSound: PropTypes.func,
 };
 
 const mapStateToProps = state => {
