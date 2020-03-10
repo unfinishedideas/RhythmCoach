@@ -52,7 +52,6 @@ const styles = {
   },
 
   controllerStyle: {
-    // border: '1px solid green',
     background: 'rgb(50,50,50)',
     display: 'grid',
     padding: '1rem',
@@ -61,6 +60,7 @@ const styles = {
     gridTemplateColumns: '1fr 1fr 1fr 1fr',
     gridRowGap: '2rem',
     width: '100%',
+    borderRadius: '10px 10px 0 0'
   },
 
   topRightStyle: {

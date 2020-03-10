@@ -21,6 +21,8 @@ const styles = {
         gridColumn: '1/4',
         background: 'rgb(25,25,25)',
         border: '4px solid rgb(150,150,150)',
+        borderRadius: '10px',
+        boxShadow: '2px 2px black'
         // boxSizing: 'border-box',
         // marginLeft: '20px'
         // textAlign: 'center'

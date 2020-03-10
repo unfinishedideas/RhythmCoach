@@ -3,9 +3,9 @@ import React from 'react';
 function Transport() {
     return (
         <div style={styles.transportStyle}>
-            <button style={styles.tapButtonStyle}>Tap</button>
-            <button style={styles.startButtonStyle}>Start</button>
-            <button style={styles.stopButtonStyle}>Stop</button>
+            <button style={styles.btnStyle}>Tap</button>
+            <button style={styles.btnStyle}>Start</button>
+            <button style={styles.btnStyle}>Stop</button>
         </div>
     )
 }
@@ -17,24 +17,14 @@ const styles = {
         gridColumn: '1/3',
         margin: '1rem',
     },
-    tapButtonStyle: {
+    btnStyle: {
         height: '9rem',
         width: '9rem',
         margin: '0 1rem',
-        fontSize: '1.5rem'
+        fontSize: '1.5rem',
+        borderRadius: '20px',
+        boxShadow: '3px 3px black'
     },
-    startButtonStyle: {
-        height: '9rem',
-        width: '9rem',
-        margin: '0 1rem',
-        fontSize: '1.5rem'
-    },
-    stopButtonStyle: {
-        height: '9rem',
-        width: '9rem',
-        margin: '0 1rem',
-        fontSize: '1.5rem'
-    }
 }
 
 export default Transport;

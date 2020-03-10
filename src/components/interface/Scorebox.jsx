@@ -24,20 +24,22 @@ const scoreBoxStyle = {
     width: '9rem',
     margin: '0 auto',
     background: 'white',
-    display: 'table',
     color: 'rgb(0,255,50)',
     marginBottom: '1rem',
     border: '4px rgb(150,150,150) solid',
-    padding: '1rem'
+    padding: '1rem',
+    borderRadius: '10px',
+    boxShadow: '2px 2px black'
 }
 
 const scoreStyle = {
-    textAlign: 'center',
-    display: 'table-cell',
-    verticalAlign: 'middle',
     fontSize: '3rem',
     color: 'rgb(0,255,100)',
-    textShadow: '2px 2px black'
+    textShadow: '2px 2px black',
+    textAlign: 'center',
+    margin: '0 auto',
+    verticalAlign: 'middle',
+    lineHeight: '6rem',
 }
 
 ScoreBox.propTypes = {

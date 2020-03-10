@@ -15,7 +15,9 @@ function MessageBox() {
             border: '4px solid rgb(150,150,150)',
             padding: '1rem',
             boxSizing: 'border-box',
+            borderRadius: '10px',
             margin: '0 auto',
+            boxShadow: '2px 2px black'
             // gridColumn: '1/5',
         }
     }
@@ -23,7 +25,7 @@ function MessageBox() {
         <div style={styles.messageComponentStyle}>
             <MetronomeLight lightOn={false} />
             <div style={styles.boxStyles}>
-                <p>Wow great job!</p>
+                <p>Wow, great job!</p>
             </div>
         </div>
     );

@@ -62,6 +62,7 @@ function ToneTest() {
   let aboutToLoop = false;
   let remainingTicks = 0;
   let distanceToNextNote = 0;
+
   const targetRhythmArray = [5, 10];
 
   function song() {
@@ -78,71 +79,68 @@ function ToneTest() {
     } else if (counter === 2) {
       secondTick = Tone.Transport.getTicksAtTime();
     }
-    if (secondTick !== null && counter !== 1) {
+    if (secondTick !== null && counter === 3) {
       sixteenthSpacing = secondTick - firstTick;
     }
 
-    // Set the ticks for the target note
-    // Check for loops with .position[#]. That position[0] value on 'about to loop' should change based on # of measures.
-    console.log(Tone.Transport.position);
-    if (
-      Tone.Transport.position[0] === "0" &&
-      Tone.Transport.position[2] === "0" &&
-      Tone.Transport.position[4] === "0"
-    ) {
-      aboutToLoop = false;
-      console.log("%%%%%%%%");
-      console.log("done loop");
-      console.log("%%%%%%%%");
-    }
+    // // Set the ticks for the target note
+    // // Check for loops with .position[#]. That position[0] value on 'about to loop' should change based on # of measures.
+    // // console.log(Tone.Transport.position);
+    // if (
+    //   Tone.Transport.position[0] === "0" &&
+    //   Tone.Transport.position[2] === "0" &&
+    //   Tone.Transport.position[4] === "0"
+    // ) {
+    //   aboutToLoop = false;
+    //   console.log("%%%%%%%%");
+    //   console.log("done loop");
+    //   console.log("%%%%%%%%");
+    // }
 
-    if (
-      Tone.Transport.position[0] === "1" &&
-      Tone.Transport.position[2] === "0" &&
-      Tone.Transport.position[4] === "0"
-    ) {
-      aboutToLoop = true;
-      console.log("about to loop");
-    }
-    if (
-      aboutToLoop === true &&
-      targetRhythmArray.indexOf(counter) + 2 > targetRhythmArray.length
-    ) {
-      let totalTicks = sixteenthSpacing * 15;
+    // if (
+    //   Tone.Transport.position[0] === "1" &&
+    //   Tone.Transport.position[2] === "0" &&
+    //   Tone.Transport.position[4] === "0"
+    // ) {
+    //   aboutToLoop = true;
+    //   console.log("about to loop");
+    // }
+    // if (
+    //   aboutToLoop === true &&
+    //   targetRhythmArray.indexOf(counter) + 2 > targetRhythmArray.length
+    // ) {
+    //   let totalTicks = sixteenthSpacing * 15;
 
-      // Gets the distance between the last 16th note and 0
-      remainingTicks =
-        totalTicks -
-        sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1];
+    //   // Gets the distance between the last 16th note and 0
+    //   remainingTicks =
+    //     totalTicks -
+    //     sixteenthSpacing * targetRhythmArray[targetRhythmArray.length - 1];
 
-      nextTargetTick =
-        targetRhythmArray[0] * sixteenthSpacing - sixteenthSpacing;
+    //   nextTargetTick =
+    //     targetRhythmArray[0] * sixteenthSpacing - sixteenthSpacing;
 
-      distanceToNextNote = nextTargetTick + remainingTicks;
-      targetTick = remainingTicks * -1;
+    //   distanceToNextNote = nextTargetTick + remainingTicks;
+    //   targetTick = remainingTicks * -1;
 
-      //   dispatch(changeCurrentTarget(remainingTicks));
-      //   dispatch(updateTargetDistance(distanceToNextNote));
+    //   //   dispatch(changeCurrentTarget(remainingTicks));
+    //   //   dispatch(updateTargetDistance(distanceToNextNote));
 
-      console.log("calculating new targets!");
-      console.log("currentTarget:", targetTick);
-      // console.log('remainingTicks', remainingTicks);
-      console.log("next target tick:", nextTargetTick);
-      // console.log('distance to next: ', distanceToNextNote);
-    } else if (targetRhythmArray.includes(counter)) {
+    //   console.log("calculating new targets!");
+    //   console.log("currentTarget:", targetTick);
+    //   // console.log('remainingTicks', remainingTicks);
+    //   console.log("next target tick:", nextTargetTick);
+    //   // console.log('distance to next: ', distanceToNextNote);
+    if (targetRhythmArray.includes(counter)) {
       targetTick = Tone.Transport.getTicksAtTime();
 
-      let nextIndex = targetRhythmArray.indexOf(counter) + 1;
+      let nextIndex = targetRhythmArray.indexOf(counter) + 2;
 
       // If the next index is larger than the array it must be index 0
-      if (nextIndex + 1 > targetRhythmArray.length) {
+      if (nextIndex > targetRhythmArray.length) {
         nextIndex = 0;
       }
       // Get the value in ticks for the next target note
-      nextTargetTick =
-        firstTick +
-        targetRhythmArray[nextIndex] * sixteenthSpacing -
-        sixteenthSpacing;
+      nextTargetTick = firstTick + (targetRhythmArray[nextIndex] * sixteenthSpacing) - sixteenthSpacing;
 
       // Calculate the distance to the next note
       distanceToNextNote = nextTargetTick - targetTick;
@@ -229,7 +227,7 @@ function ToneTest() {
 
   return (
     <div>
-      {/* <h2>ToneTest.js loaded</h2>
+      <h2>ToneTest.js loaded</h2>
       <h3>Press any key to log time in ticks and play a sound</h3>
       <h3>
         Check console log to see current ticks of keypress / effect of
@@ -239,7 +237,7 @@ function ToneTest() {
       <br />
       <button onClick={() => (listening = true)}>Listening</button>
       <br />
-      <button onClick={() => (listening = false)}>Playback</button> */}
+      <button onClick={() => (listening = false)}>Playback</button>
       <UI toggleTransport={toggleTransport} />
     </div>
   );

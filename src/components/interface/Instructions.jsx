@@ -8,7 +8,7 @@ function Instructions(props) {
             gridColumn: '1/5',
             boxSizing: 'border-box',
             padding: '1rem',
-            // margin: '-1rem',
+            borderRadius: '0 0 10px 10px'
         },
 
         instructionTextStyle: {
