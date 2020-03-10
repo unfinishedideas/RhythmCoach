@@ -1,6 +1,8 @@
 import React from 'react';
 import MetronomeLight from "./MetronomeLight";
-function MessageBox() {
+import PropTypes from 'prop-types';
+
+function MessageBox(props) {
     const styles = {
         messageComponentStyle: {
             display: 'flex',
@@ -23,12 +25,16 @@ function MessageBox() {
     }
     return (
         <div style={styles.messageComponentStyle}>
-            <MetronomeLight lightOn={false} />
+            <MetronomeLight lightOn={props.metronomeOn} />
             <div style={styles.boxStyles}>
                 <p>Wow, great job!</p>
             </div>
         </div>
     );
+}
+
+MessageBox.propTypes = {
+    metronomeOn: PropTypes.bool
 }
 
 export default MessageBox;

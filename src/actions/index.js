@@ -11,3 +11,17 @@ export const updateTargetDistance = distanceTicks => {
     payload: distanceTicks
   };
 };
+
+export const updateAccuracy = differenceTicks => {
+  return {
+    type: "UPDATE_ACCURACY",
+    payload: differenceTicks
+  }
+}
+
+export const metronomeSwitch = toggleSwitch => {
+  return {
+    type: "TOGGLE_METRONOME",
+    payload: toggleSwitch
+  }
+}

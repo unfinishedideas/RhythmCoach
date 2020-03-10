@@ -9,6 +9,7 @@ import ScoreBox from "./Scorebox";
 import Instructions from './Instructions';
 import RhythmList from './RhythmList';
 import MessageBox from './MessageBox';
+import { connect } from 'react-redux';
 
 function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
@@ -29,7 +30,7 @@ function UI(props) {
 
       <div style={styles.controllerStyle}>
         <RhythmDisplay />
-        <MessageBox />
+        <MessageBox metronomeOn={props.state.metronomeOn} />
         <Transport />
         <ScoreBox title={'Accuracy'} value={'100%'} />
         <ScoreBox title={'Score'} value={'4000'} />
@@ -72,9 +73,14 @@ const styles = {
 
 }
 
-
-export default UI;
-
 UI.propTypes = {
   toggleTransport: PropTypes.func
 };
+
+const mapStateToProps = state => {
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps)(UI);
