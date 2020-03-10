@@ -177,7 +177,7 @@ function ToneTest() {
     // console.log('how close: ', difference);
   }
 
-  function updateRhythm(newArray) {
+  function changeRhythm(newArray) {
     targetRhythmArray = newArray;
     dispatch(updateRhythm(targetRhythmArray));
   }
@@ -230,7 +230,8 @@ function ToneTest() {
       <h3>Press any key to log time in ticks and play a sound</h3>
       <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
       <button onClick={toggleTransport}>Start/Stop</button>
-      <button onClick={() => { updateRhythm([1, 2, 3, 4]) }}>Temp updater</button>
+      <button onClick={() => (changeRhythm([1, 2, 3]))}>Temp updater</button>
+      {/* <button onClick={() => (rhythmSelector(1))}>Track 1</button> */}
       <UI onStartTransport={startTransport} onStopTransport={stopTransport} onCompareTime={compareTime} onPlayUserSound={playUserSound} />
     </div>
   )
