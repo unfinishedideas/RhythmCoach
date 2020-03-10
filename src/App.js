@@ -1,22 +1,16 @@
 import React from "react";
-// import ToneTest from './components/ToneTest';
 import ToneEngine from "./components/ToneEngine";
+import Header from './components/Header';
 
 function App() {
   return (
     <div>
-      <h1 style={heroTextStyle}>The Rhythm Coach</h1>
+      <Header />
       <ToneEngine />
-      {/* <ToneTest/> */}
     </div>
   );
 }
 
-const heroTextStyle = {
-  textAlign: 'center',
-  color: 'white',
-  fontSize: '48px',
 
-}
 
 export default App;

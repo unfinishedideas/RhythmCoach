@@ -120,7 +120,7 @@ const beatText = {
 const gridDisplayStyle = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-  gridColumnGap: '10px',
+  gridColumnGap: '.6rem',
   width: "100%"
 };
 

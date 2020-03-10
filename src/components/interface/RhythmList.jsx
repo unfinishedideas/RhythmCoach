@@ -8,38 +8,29 @@ const rhythmSelector = (selection) => {
 };
 
 function RhythmList(props) {
+    const styles = {
+        listComponentStyle: {
+            background: 'rgb(100,100,100)',
+            gridColumn: '1/5',
+            padding: '1rem'
+        },
 
-    const listStyle = {
-        // border: "1px solid black",
-        display: props.isShown ? 'block' : 'none',
-    };
+        listStyle: {
+            display: props.isShown ? 'block' : 'none',
+        },
 
-    const listComponentStyle = {
-        width: props.isShown ? '15%' : '3%',
-        padding: props.isShown ? '1rem' : '0',
-        background: 'rgb(100,100,100)'
-    }
+        toggleBtnStyle: {
 
-    const toggleBtnStyle = {
-        width: props.isShown ? '80px' : '100%',
-        height: props.isShown ? '40px' : '100%',
-        // transform: props.isShown ? '' : 'rotate(-90deg)',
-    }
-
-    const toggleTextStyle = {
-
-        // transform: props.isShown ? '' : 'rotate(-90deg)',
-        transform: 'rotate(-90deg)',
-        color: 'red'
+        }
     }
 
     const toggleList = () => { props.listHelper() }
 
     return (
-        <div style={listComponentStyle}>
-            <button style={toggleBtnStyle} onClick={toggleList}><span style={toggleTextStyle}>Toggle</span></button>
-            <div style={listStyle}>
-                <h3>Rhythm List</h3>
+        <div style={styles.listComponentStyle}>
+            <h3 style={{ margin: '0' }}>Rhythm List</h3>
+            <button style={styles.toggleBtnStyle} onClick={toggleList}>Toggle</button>
+            <div style={styles.listStyle}>
                 <h4>1/4 Note</h4>
                 <button onClick={() => (rhythmSelector(1))}>Hey</button>
                 <h4>1/8 Note</h4>
