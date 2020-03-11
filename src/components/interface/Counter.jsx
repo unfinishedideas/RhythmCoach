@@ -1,21 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 
 function Counter() {
+
+    const Counter = styled.div`
+    margin-right: 20px;
+
+    @media (max-width: 50px) {
+        display: none;
+      }
+    `;
+
+
     return (
-        <div style={styles.counterBoxStyle}>
+        <Counter>
             <h3 style={styles.counterStyle}>4</h3>
-        </div>
+        </Counter>
     )
 }
 const styles = {
-    counterBoxStyle: {
-        border: '4px rgb(150,150,150) solid',
-        width: '6rem',
-        height: '6rem',
-        display: 'table',
-        background: 'white',
-        margin: '1rem',
-    },
+    // counterBoxStyle: {
+    //     border: '4px rgb(150,150,150) solid',
+    //     width: '6rem',
+    //     height: '6rem',
+    //     display: 'table',
+    //     background: 'white',
+    //     margin: '1rem',
+    // },
     counterStyle: {
         textAlign: 'center',
         display: 'table-cell',

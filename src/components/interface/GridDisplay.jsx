@@ -117,7 +117,7 @@ function GridDisplay() {
   grid-column-gap: .6rem;
   width: 100%;
 
-  @media (max-width: 805px) {
+  @media (max-width: 815px) {
     grid-column-gap: 0;
     grid-template-columns 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     color: red;
