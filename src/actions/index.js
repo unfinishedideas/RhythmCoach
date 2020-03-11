@@ -32,3 +32,10 @@ export const updateRhythm = newRhythm => {
     payload: newRhythm
   }
 }
+
+export const updateMetronomeCount = currentCount => {
+  return {
+    type: "UPDATE_METRONOME_COUNT",
+    payload: currentCount
+  }
+}

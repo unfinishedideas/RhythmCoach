@@ -1,5 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import styled from 'styled-components';
+
+const TransportComponent = styled.div`
+justify-self: center;
+align-self: center;
+grid-column: 1/3;
+margin: 1rem;
+
+@media (max-width: 915px) {
+    
+  }
+`;
 
 
 function Transport(props) {
@@ -14,22 +26,23 @@ function Transport(props) {
         props.onStopTransport();
     }
 
+
     return (
-        <div style={styles.transportStyle}>
+        <TransportComponent>
             <button style={styles.btnStyle} onMouseDown={compareTime}>Tap</button>
             <button style={styles.btnStyle} onMouseDown={startTransport}>Start</button>
             <button style={styles.btnStyle} onMouseDown={stopTransport}>Stop</button>
-        </div>
+        </TransportComponent>
     )
 }
 
 const styles = {
-    transportStyle: {
-        justifySelf: 'center',
-        alignSelf: 'center',
-        gridColumn: '1/3',
-        margin: '1rem',
-    },
+    // transportStyle: {
+    //     justifySelf: 'center',
+    //     alignSelf: 'center',
+    //     gridColumn: '1/3',
+    //     margin: '1rem',
+    // },
     btnStyle: {
         height: '9rem',
         width: '9rem',

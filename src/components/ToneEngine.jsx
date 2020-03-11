@@ -4,7 +4,7 @@ import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
 import { useDispatch } from "react-redux";
-import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch, updateRhythm } from "./../actions";
+import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch, updateRhythm, updateMetronomeCount } from "./../actions";
 import UI from "./interface/UI";
 
 function ToneTest() {
@@ -80,6 +80,8 @@ function ToneTest() {
     // Metronome (using next 16th note on 'else if' to reduce redux calls)
     if (counter === 1 || counter === 5 || counter === 9 || counter === 13) {
       dispatch(metronomeSwitch(true));
+      // Make a switch!!
+      dispatch(updateMetronomeCount(counter));
     } else if (counter === 2 || counter === 6 || counter === 10 || counter === 14) {
       dispatch(metronomeSwitch(false));
     }

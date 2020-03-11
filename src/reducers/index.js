@@ -3,6 +3,7 @@ import distanceCalc from './distanceCalc';
 import accuracyReducer from './accuracyReducer';
 import metronomeReducer from './metronomeReducer';
 import updateRhythmReducer from './updateRhythmReducer';
+import updateMetronomeCountReducer from './updateMetronomeCountReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     distanceToNextNote: distanceCalc,
     accuracyRating: accuracyReducer,
     metronomeOn: metronomeReducer,
-    currentRhythm: updateRhythmReducer
+    currentRhythm: updateRhythmReducer,
+    metronomeCount: updateMetronomeCountReducer
 });
 
 export default rootReducer;

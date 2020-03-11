@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function Counter() {
+const CounterComponent = styled.div`
+margin-right: 20px;
 
-    const Counter = styled.div`
-    margin-right: 20px;
+@media (max-width: 50px) {
+    display: none;
+  }
+`;
 
-    @media (max-width: 50px) {
-        display: none;
-      }
-    `;
+function Counter(props) {
+
 
 
     return (
-        <Counter>
-            <h3 style={styles.counterStyle}>4</h3>
-        </Counter>
+        <CounterComponent>
+            <h3 style={styles.counterStyle}>{props.count}</h3>
+        </CounterComponent>
     )
 }
 const styles = {
@@ -37,5 +39,8 @@ const styles = {
     }
 }
 
+Counter.propTypes = {
+    count: PropTypes.number
+}
 
 export default Counter;

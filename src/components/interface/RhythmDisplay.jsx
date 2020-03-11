@@ -1,13 +1,14 @@
 import React from 'react';
 import GridDisplay from "./GridDisplay";
 import Counter from './Counter';
+import PropTypes from 'prop-types';
 
-function RhythmDisplay() {
+function RhythmDisplay(props) {
 
     return (
         <div style={styles.rhythmComponentStyle}>
             <div style={styles.rhythmDisplayStyle}>
-                <Counter />
+                <Counter count={props.count} />
                 <GridDisplay />
             </div>
         </div>
@@ -31,6 +32,8 @@ const styles = {
     },
 }
 
-
+RhythmDisplay.propTypes = {
+    count: PropTypes.number
+}
 
 export default RhythmDisplay;
