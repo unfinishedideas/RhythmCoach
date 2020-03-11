@@ -53,7 +53,7 @@ function UI(props) {
     width: 100%;
     border-radius: 10px 10px 0 0;
 
-    @media (max-width: 1175px) {
+    @media (max-width: 1200px) {
       display: flex;
       flex-direction: column;
     }
@@ -62,9 +62,9 @@ function UI(props) {
   return (
     <MainDisplay>
       <Controller>
-        <MetronomeLight lightOn={props.metronomeOn} />
+        <MetronomeLight lightOn={props.state.metronomeOn} />
         <RhythmDisplay targetArray={props.state.targetArray} />
-        <MessageBox metronomeOn={props.state.metronomeOn} />
+        <MessageBox />
         <Transport onStartTransport={props.onStartTransport} onStopTransport={props.onStopTransport} onCompareTime={props.onCompareTime} onPlayUserSound={props.onPlayUserSound} />
         <ScoreBox title={'Accuracy'} value={props.state.accuracyRating} />
         <ScoreBox title={'Score'} value={4000} />
@@ -81,6 +81,7 @@ UI.propTypes = {
   onStopTransport: PropTypes.func,
   onCompareTime: PropTypes.func,
   onPlayUserSound: PropTypes.func,
+  onChangeRhythm: PropTypes.func
 };
 
 const mapStateToProps = state => {

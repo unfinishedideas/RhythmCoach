@@ -132,15 +132,15 @@ function GridDisplay() {
   );
 }
 
-const subdivisionText = {
-  textAlign: 'center',
-  marginTop: '0'
-}
-const beatText = {
-  textAlign: 'center',
-  marginTop: '0',
-  color: 'yellow'
-}
+// const subdivisionText = {
+//   textAlign: 'center',
+//   marginTop: '0'
+// }
+// const beatText = {
+//   textAlign: 'center',
+//   marginTop: '0',
+//   color: 'yellow'
+// }
 
 // const gridDisplayStyle = {
 //   display: "grid",

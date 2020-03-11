@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 function MessageBox(props) {
     const styles = {
         messageComponentStyle: {
@@ -26,10 +24,6 @@ function MessageBox(props) {
             <p>Wow, great job!</p>
         </div>
     );
-}
-
-MessageBox.propTypes = {
-    metronomeOn: PropTypes.bool
 }
 
 export default MessageBox;
