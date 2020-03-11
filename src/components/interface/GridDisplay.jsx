@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GridBox from "./GridBox";
+import styled from 'styled-components';
 
 function GridDisplay() {
   const gridBoxes = [
@@ -78,8 +79,21 @@ function GridDisplay() {
     updateBoxes(updatedBoxes);
   };
 
+  const GridDisplayer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: .6rem;
+  width: 100%;
+
+  @media (max-width: 695px) {
+    grid-column-gap: 0;
+    grid-template-columns 1fr 1fr 1fr 1fr;
+    color: red;
+  }
+  `;
+
   return (
-    <div style={gridDisplayStyle}>
+    <GridDisplayer style={gridDisplayStyle}>
       {boxes.map((b, i) => (
         <GridBox isOn={b.isOn} key={i} id={b.id} toggleBox={toggleBox} />
       ))}
@@ -103,7 +117,7 @@ function GridDisplay() {
       <p style={subdivisionText}>+</p>
       <p style={subdivisionText}>a</p>
 
-    </div>
+    </GridDisplayer>
   );
 }
 

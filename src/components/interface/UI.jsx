@@ -57,6 +57,12 @@ function UI(props) {
     }
   `;
 
+  // const RhythmDisplay = styled.div`
+  //   @media (max-width: 1000px) {
+
+  //   }
+  // `;
+
   return (
     <MainDisplay>
       <Controller>

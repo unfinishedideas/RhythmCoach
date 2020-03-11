@@ -26,7 +26,7 @@ function Transport(props) {
 const styles = {
     transportStyle: {
         justifySelf: 'center',
-        alignSelf: 'end',
+        alignSelf: 'center',
         gridColumn: '1/3',
         margin: '1rem',
     },
