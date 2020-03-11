@@ -27,13 +27,13 @@ function UI(props) {
 
   return (
     <div style={styles.mainUiStyle}>
-
+      {/* <h1>The Rhythiminator</h1> */}
       <div style={styles.controllerStyle}>
         <RhythmDisplay targetArray={props.state.targetArray} />
         <MessageBox metronomeOn={props.state.metronomeOn} />
         <Transport onStartTransport={props.onStartTransport} onStopTransport={props.onStopTransport} onCompareTime={props.onCompareTime} onPlayUserSound={props.onPlayUserSound} />
         <ScoreBox title={'Accuracy'} value={props.state.accuracyRating} />
-        <ScoreBox title={'Score'} value={'4000'} />
+        <ScoreBox title={'Score'} value={4000} />
       </div>
       <RhythmList isShown={listIsShown} listHelper={listHelper} />
       <Instructions isShown={instructionsShown} instructionHelper={instructionHelper} />
@@ -44,6 +44,7 @@ const styles = {
   mainUiStyle: {
     // border: "1px solid black",
     borderRadius: '20px',
+    // border: 'rgb(150,150,150) solid 20px',
     padding: '1rem',
     // display: "flex",
     color: 'white',

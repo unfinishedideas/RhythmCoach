@@ -16,9 +16,9 @@ function Transport(props) {
 
     return (
         <div style={styles.transportStyle}>
-            <button style={styles.btnStyle} onClick={compareTime}>Tap</button>
-            <button style={styles.btnStyle} onClick={startTransport}>Start</button>
-            <button style={styles.btnStyle} onClick={stopTransport}>Stop</button>
+            <button style={styles.btnStyle} onMouseDown={compareTime}>Tap</button>
+            <button style={styles.btnStyle} onMouseDown={startTransport}>Start</button>
+            <button style={styles.btnStyle} onMouseDown={stopTransport}>Stop</button>
         </div>
     )
 }
