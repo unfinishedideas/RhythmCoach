@@ -6,67 +6,99 @@ function GridDisplay() {
   const gridBoxes = [
     {
       isOn: false,
-      id: 1
+      id: 1,
+      count: '1',
+      bigCount: true
     },
     {
       isOn: false,
-      id: 2
+      id: 2,
+      count: 'e',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 3
+      id: 3,
+      count: '+',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 4
+      id: 4,
+      count: 'a',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 5
+      id: 5,
+      count: '2',
+      bigCount: true
     },
     {
       isOn: false,
-      id: 6
+      id: 6,
+      count: 'e',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 7
+      id: 7,
+      count: '+',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 8
+      id: 8,
+      count: 'a',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 9
+      id: 9,
+      count: '3',
+      bigCount: true
     },
     {
       isOn: false,
-      id: 10
+      id: 10,
+      count: 'e',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 11
+      id: 11,
+      count: '+',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 12
+      id: 12,
+      count: 'a',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 13
+      id: 13,
+      count: '4',
+      bigCount: true
     },
     {
       isOn: false,
-      id: 14
+      id: 14,
+      count: 'e',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 15
+      id: 15,
+      count: '+',
+      bigCount: false
     },
     {
       isOn: false,
-      id: 16
+      id: 16,
+      count: 'a',
+      bigCount: false
     }
   ];
   const [boxes, updateBoxes] = useState(gridBoxes);
@@ -85,19 +117,20 @@ function GridDisplay() {
   grid-column-gap: .6rem;
   width: 100%;
 
-  @media (max-width: 695px) {
+  @media (max-width: 805px) {
     grid-column-gap: 0;
-    grid-template-columns 1fr 1fr 1fr 1fr;
+    grid-template-columns 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     color: red;
+    // width: 0;
   }
   `;
 
   return (
-    <GridDisplayer style={gridDisplayStyle}>
+    <GridDisplayer>
       {boxes.map((b, i) => (
-        <GridBox isOn={b.isOn} key={i} id={b.id} toggleBox={toggleBox} />
+        <GridBox isOn={b.isOn} key={i} id={b.id} bigCount={b.bigCount} count={b.count} toggleBox={toggleBox} />
       ))}
-      <p style={beatText}>1</p>
+      {/* <p style={beatText}>1</p>
       <p style={subdivisionText}>e</p>
       <p style={subdivisionText}>+</p>
       <p style={subdivisionText}>a</p>
@@ -115,7 +148,7 @@ function GridDisplay() {
       <p style={beatText}>4</p>
       <p style={subdivisionText}>e</p>
       <p style={subdivisionText}>+</p>
-      <p style={subdivisionText}>a</p>
+      <p style={subdivisionText}>a</p> */}
 
     </GridDisplayer>
   );
@@ -131,11 +164,11 @@ const beatText = {
   color: 'yellow'
 }
 
-const gridDisplayStyle = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-  gridColumnGap: '.6rem',
-  width: "100%"
-};
+// const gridDisplayStyle = {
+//   display: "grid",
+//   gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+//   gridColumnGap: '.6rem',
+//   width: "100%"
+// };
 
 export default GridDisplay;
