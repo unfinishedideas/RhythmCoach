@@ -33,11 +33,15 @@ function UI(props) {
     color: white;
     max-width: 75rem;
     margin: 0 auto;
-    background: rgb(150,150,150)
-  `;
+    background: rgb(150,150,150);
+
+    @media (max-width: 1000px) {
+      margin: 0;
+    }
+    `;
 
   const Controller = styled.div`
-  background: rgb(50,50,50);
+    background: rgb(50,50,50);
     display: grid;
     padding: 1rem;
     align-items: end;
@@ -46,6 +50,11 @@ function UI(props) {
     grid-row-gap: 2rem;
     width: 100%;
     border-radius: 10px 10px 0 0;
+
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+    }
   `;
 
   return (
