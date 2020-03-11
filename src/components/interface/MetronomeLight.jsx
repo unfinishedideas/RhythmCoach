@@ -9,9 +9,6 @@ function MetronomeLight(props) {
         border: '2px black solid',
         height: '1.5rem',
         width: '1.5rem',
-        // float: 'right',
-        margin: '0 1rem 1rem 0',
-        alignSelf: 'flex-end',
     }
 
     return (

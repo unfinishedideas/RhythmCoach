@@ -117,11 +117,9 @@ function GridDisplay() {
   grid-column-gap: .6rem;
   width: 100%;
 
-  @media (max-width: 815px) {
+  @media (max-width: 915px) {
     grid-column-gap: 0;
     grid-template-columns 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    color: red;
-    // width: 0;
   }
   `;
 
@@ -130,26 +128,6 @@ function GridDisplay() {
       {boxes.map((b, i) => (
         <GridBox isOn={b.isOn} key={i} id={b.id} bigCount={b.bigCount} count={b.count} toggleBox={toggleBox} />
       ))}
-      {/* <p style={beatText}>1</p>
-      <p style={subdivisionText}>e</p>
-      <p style={subdivisionText}>+</p>
-      <p style={subdivisionText}>a</p>
-
-      <p style={beatText}>2</p>
-      <p style={subdivisionText}>e</p>
-      <p style={subdivisionText}>+</p>
-      <p style={subdivisionText}>a</p>
-
-      <p style={beatText}>3</p>
-      <p style={subdivisionText}>e</p>
-      <p style={subdivisionText}>+</p>
-      <p style={subdivisionText}>a</p>
-
-      <p style={beatText}>4</p>
-      <p style={subdivisionText}>e</p>
-      <p style={subdivisionText}>+</p>
-      <p style={subdivisionText}>a</p> */}
-
     </GridDisplayer>
   );
 }

@@ -3,14 +3,16 @@ import React, { useState } from "react";
 // import { changeCurrentTarget } from "../../actions";
 // import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+import MetronomeLight from "./MetronomeLight";
 import RhythmDisplay from './RhythmDisplay';
 import Transport from './Transport';
 import ScoreBox from "./Scorebox";
 import Instructions from './Instructions';
 import RhythmList from './RhythmList';
 import MessageBox from './MessageBox';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 function UI(props) {
   // const currentTarget = useSelector(state => state.currentTarget);
@@ -51,21 +53,16 @@ function UI(props) {
     width: 100%;
     border-radius: 10px 10px 0 0;
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1175px) {
       display: flex;
       flex-direction: column;
     }
   `;
 
-  // const RhythmDisplay = styled.div`
-  //   @media (max-width: 1000px) {
-
-  //   }
-  // `;
-
   return (
     <MainDisplay>
       <Controller>
+        <MetronomeLight lightOn={props.metronomeOn} />
         <RhythmDisplay targetArray={props.state.targetArray} />
         <MessageBox metronomeOn={props.state.metronomeOn} />
         <Transport onStartTransport={props.onStartTransport} onStopTransport={props.onStopTransport} onCompareTime={props.onCompareTime} onPlayUserSound={props.onPlayUserSound} />

@@ -23,7 +23,7 @@ const scoreBoxStyle = {
     height: '6rem',
     width: '9rem',
     margin: '0 auto',
-    background: 'white',
+    background: 'rgb(25,25,25)',
     color: 'rgb(0,255,50)',
     marginBottom: '1rem',
     border: '4px rgb(150,150,150) solid',

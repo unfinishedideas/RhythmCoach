@@ -15,7 +15,7 @@ function RhythmDisplay() {
 }
 const styles = {
     rhythmComponentStyle: {
-        width: '90%',
+        width: '95%',
         justifySelf: 'center',
         alignSelf: 'end',
         gridColumn: '1/4',
@@ -23,21 +23,9 @@ const styles = {
         border: '4px solid rgb(150,150,150)',
         borderRadius: '10px',
         boxShadow: '2px 2px black',
-        border: '1px solid red'
-        // boxSizing: 'border-box',
-        // marginLeft: '20px'
-        // textAlign: 'center'
-    },
-
-    rhythmTitleStyle: {
-        color: 'red',
-        margin: '0 2rem'
     },
 
     rhythmDisplayStyle: {
-        // border: '1px solid red',
-        // overflow: 'auto',
-        // width: '100%',
         padding: '1rem',
         display: 'flex',
     },
