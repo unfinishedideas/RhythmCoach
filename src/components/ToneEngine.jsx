@@ -79,12 +79,16 @@ function ToneTest() {
       sixteenthSpacing = secondTick - firstTick;
     }
 
+    if (targetRhythmArray.length < 1) {
+      targetTick = 'no target';
+      listening = false;
+    } else {
+      listening = true;
+    }
     // Estimate first targets
     if (targetTick === null) {
-      if (targetRhythmArray.length < 1) {
-        targetTick = 'no target';
-        nextTargetTick = 'no next target';
-      }
+
+
       // if (typeof targetRhythmArray[0] === 'undefined') {
       //   targetTick = 'no target';
       // } else {
@@ -198,10 +202,6 @@ function ToneTest() {
     // Target is currently wrong on loop
     let inputTick = Tone.Transport.getTicksAtTime();
 
-    if (targetTick === 'no target') {
-      targetTick = 0;
-    }
-
     let desiredTarget = targetTick;
     let difference = inputTick - desiredTarget;
 
@@ -221,7 +221,6 @@ function ToneTest() {
 
   function changeRhythm(newArray) {
     targetRhythmArray = newArray;
-    console.log(targetRhythmArray)
     dispatch(updateRhythm(targetRhythmArray));
   }
 
