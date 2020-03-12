@@ -79,26 +79,21 @@ function ToneTest() {
       sixteenthSpacing = secondTick - firstTick;
     }
 
-    if (targetRhythmArray.length < 1) {
+    if (targetRhythmArray.length === 0) {
       targetTick = 'no target';
       listening = false;
     } else {
       listening = true;
     }
-    // Estimate first targets
-    if (targetTick === null) {
 
-
-      // if (typeof targetRhythmArray[0] === 'undefined') {
-      //   targetTick = 'no target';
-      // } else {
-      //   targetTick = (48 * targetRhythmArray[0]) - sixteenthSpacing;
-      // }
-      // if (typeof targetRhythmArray[1] === 'undefined' && typeof targetRhythmArray[0] === Number) {
-      //   nextTargetTick = targetTick + (sixteenthSpacing * 15)
-      // } else {
-      //   nextTargetTick = (48 * targetRhythmArray[1]) - sixteenthSpacing;
-      // }
+    // Estimate first targets. 48 is around the default value and used because 16th spacing hasn't been calculated.
+    if (typeof targetTick !== Number && listening === true) {
+      targetTick = (48 * targetRhythmArray[0]) - 48;
+      if (typeof targetRhythmArray[1] === 'undefined') {
+        nextTargetTick = targetTick + (48 * 15)
+      } else {
+        nextTargetTick = (48 * targetRhythmArray[1]) - 48;
+      }
     }
 
     // Metronome (using next 16th note on 'else if' to reduce redux calls)
@@ -201,7 +196,6 @@ function ToneTest() {
   function compareTime() {
     // Target is currently wrong on loop
     let inputTick = Tone.Transport.getTicksAtTime();
-
     let desiredTarget = targetTick;
     let difference = inputTick - desiredTarget;
 
@@ -219,12 +213,12 @@ function ToneTest() {
     console.log('how close: ', difference);
   }
 
+
+  // User Input / Controls
   function changeRhythm(newArray) {
     targetRhythmArray = newArray;
     dispatch(updateRhythm(targetRhythmArray));
   }
-
-  // User Input / Controls
   window.addEventListener("keydown", event => {
     if (event.keyCode === 83) {
       if (listening) {

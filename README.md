@@ -9,7 +9,8 @@ This app is designed to  improved your sense of timing by gamifying your accurac
 Simply press play and try to hit the notes on time with either the tap button on the control panel or the 's' key on your keyboard.
 
 ## Known Bugs
-* Currently there is a known issue where sometimes the next tick will come back as NaN if there are no targets set or if it hasn't reached that target note yet.
+* ~~Currently there is a known issue where sometimes the next tick will come back as NaN if there are no targets set or if it hasn't reached that target note yet.~~
+* Appears to have compatability issues with Firefox as well. Audio engine will periodically stop running and start.
 
 ## Support and contact
 If you have any issues viewing this site or any general questions about it please email me at
