@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GridBox from "./GridBox";
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const GridDisplayer = styled.div`
   display: grid;
@@ -14,7 +15,7 @@ const GridDisplayer = styled.div`
   }
   `;
 
-function GridDisplay() {
+function GridDisplay(props) {
   const gridBoxes = [
     {
       isOn: false,
@@ -41,7 +42,7 @@ function GridDisplay() {
       bigCount: false
     },
     {
-      isOn: false,
+      isOn: true,
       id: 5,
       count: '2',
       bigCount: true
@@ -89,7 +90,7 @@ function GridDisplay() {
       bigCount: false
     },
     {
-      isOn: false,
+      isOn: true,
       id: 13,
       count: '4',
       bigCount: true
@@ -120,6 +121,12 @@ function GridDisplay() {
       if (b.id === id) b.isOn = !b.isOn;
       return b;
     });
+    let newRhythmArray = updatedBoxes.map(b => {
+      if (b.isOn === true) {
+        return b.id;
+      }
+    })
+    props.onChangeRhythm(newRhythmArray)
     updateBoxes(updatedBoxes);
   };
 
@@ -149,5 +156,9 @@ function GridDisplay() {
 //   gridColumnGap: '.6rem',
 //   width: "100%"
 // };
+
+GridDisplay.propTypes = {
+  onChangeRhythm: PropTypes.func
+}
 
 export default GridDisplay;

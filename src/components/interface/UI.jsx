@@ -65,7 +65,7 @@ function UI(props) {
     <MainDisplay>
       <Controller>
         <MetronomeLight lightOn={props.state.metronomeOn} />
-        <RhythmDisplay targetArray={props.state.targetArray} count={props.state.metronomeCount} />
+        <RhythmDisplay targetArray={props.state.targetArray} count={props.state.metronomeCount} onChangeRhythm={props.onChangeRhythm} />
         <MessageBox />
         <Transport onStartTransport={props.onStartTransport} onStopTransport={props.onStopTransport} onCompareTime={props.onCompareTime} onPlayUserSound={props.onPlayUserSound} />
         <ScoreBox title={'Accuracy'} value={props.state.accuracyRating} />
