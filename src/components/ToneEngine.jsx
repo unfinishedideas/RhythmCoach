@@ -5,7 +5,7 @@ import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
 import clapSample from './../audio/clap.ogg';
 import { useDispatch } from "react-redux";
-import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch, updateRhythm, updateMetronomeCount } from "./../actions";
+import { updateAccuracy, metronomeSwitch, updateRhythm, updateMetronomeCount } from "./../actions";
 import UI from "./interface/UI";
 
 function ToneTest() {
@@ -69,7 +69,7 @@ function ToneTest() {
     // const targetRhythmArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     // const targetRhythmArray = [1,3,4,5,7,11,13]
 
-    // Calculate the distance between ticks. 16th spacing
+    // Calculate the distance between ticks. 16th spacing.
     if (counter === 1) {
       firstTick = Tone.Transport.getTicksAtTime();
     } else if (counter === 2) {
@@ -77,6 +77,20 @@ function ToneTest() {
     }
     if (secondTick !== null && counter === 3) {
       sixteenthSpacing = secondTick - firstTick;
+    }
+
+    // Estimate first target
+    if (targetTick === NaN) {
+      if (typeof targetRhythmArray[0] === 'undefined') {
+        targetTick = 'no target'
+      } else {
+        targetTick = (48 * targetRhythmArray[0]) - sixteenthSpacing;
+      }
+      if (typeof targetRhythmArray[1] === 'undefined') {
+        nextTargetTick = targetTick + (sixteenthSpacing * 15)
+      } else {
+        nextTargetTick = (48 * targetRhythmArray[1]) - sixteenthSpacing;
+      }
     }
 
     // Metronome (using next 16th note on 'else if' to reduce redux calls)
@@ -154,7 +168,6 @@ function ToneTest() {
     // Claps
     if (clapRhythmArray.includes(counter)) {
       clapPlayer.start();
-      // console.log('you want', Tone.Transport.getTicksAtTime())
     }
     // Kicks
     if (kickRhythmArray.includes(counter)) {
@@ -180,8 +193,12 @@ function ToneTest() {
   function compareTime() {
     // Target is currently wrong on loop
     let inputTick = Tone.Transport.getTicksAtTime();
-    let desiredTarget = targetTick;
 
+    if (targetTick === 'no target') {
+      targetTick = 0;
+    }
+
+    let desiredTarget = targetTick;
     let difference = inputTick - desiredTarget;
 
     if (difference > (distanceToNextNote / 2)) {
@@ -190,12 +207,12 @@ function ToneTest() {
     };
     dispatch(updateAccuracy(difference));
 
-    // console.log('----------------------------');
-    // console.log('distance between rhythms: ', distanceToNextNote)
-    // console.log('target: ', desiredTarget);
-    // console.log('input: ', inputTick);
-    // console.log('next target: ', nextTargetTick);
-    // console.log('how close: ', difference);
+    console.log('----------------------------');
+    console.log('distance between rhythms: ', distanceToNextNote)
+    console.log('target: ', desiredTarget);
+    console.log('input: ', inputTick);
+    console.log('next target: ', nextTargetTick);
+    console.log('how close: ', difference);
   }
 
   function changeRhythm(newArray) {
