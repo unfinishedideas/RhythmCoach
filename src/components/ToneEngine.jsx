@@ -263,11 +263,11 @@ function ToneTest() {
   return (
     <div>
       <UI onStartTransport={startTransport} onStopTransport={stopTransport} onCompareTime={compareTime} onPlayUserSound={playUserSound} onChangeRhythm={changeRhythm} />
-      <h2>ToneTest.js loaded</h2>
+      {/* <h2>ToneTest.js loaded</h2>
       <h3>Press any key to log time in ticks and play a sound</h3>
       <h3>Check console log to see current ticks of keypress / effect of Start/Stop button</h3>
       <button onClick={toggleTransport}>Start/Stop</button>
-      <button onClick={() => (changeRhythm([1, 2, 3]))}>Temp updater</button>
+      <button onClick={() => (changeRhythm([1, 2, 3]))}>Temp updater</button> */}
     </div>
   )
 }
