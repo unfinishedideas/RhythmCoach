@@ -81,7 +81,22 @@ function ToneTest() {
     if (counter === 1 || counter === 5 || counter === 9 || counter === 13) {
       dispatch(metronomeSwitch(true));
       // Make a switch!!
-      dispatch(updateMetronomeCount(counter));
+      switch (counter) {
+
+        case 5:
+          dispatch(updateMetronomeCount(2));
+          break
+        case 9:
+          dispatch(updateMetronomeCount(3));
+          break
+        case 13:
+          dispatch(updateMetronomeCount(4));
+          break
+        default:
+          dispatch(updateMetronomeCount(1));
+          break
+
+      }
     } else if (counter === 2 || counter === 6 || counter === 10 || counter === 14) {
       dispatch(metronomeSwitch(false));
     }
