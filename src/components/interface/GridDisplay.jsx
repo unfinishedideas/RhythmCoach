@@ -117,15 +117,20 @@ function GridDisplay(props) {
   const [boxes, updateBoxes] = useState(gridBoxes);
 
   const toggleBox = id => {
+
+    let newRhythmArray = []
+
     let updatedBoxes = boxes.map(b => {
       if (b.id === id) b.isOn = !b.isOn;
       return b;
     });
-    let newRhythmArray = updatedBoxes.map(b => {
+
+    updatedBoxes.forEach(b => {
       if (b.isOn === true) {
-        return b.id;
+        newRhythmArray.push(b.id);
       }
-    })
+    });
+
     props.onChangeRhythm(newRhythmArray)
     updateBoxes(updatedBoxes);
   };

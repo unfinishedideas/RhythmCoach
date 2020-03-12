@@ -47,7 +47,7 @@ function ToneTest() {
   );
 
   // Eventually make this state?
-  let targetTick = 0;
+  let targetTick = null;
   let counter = 1;
   let firstTick = null;
   let secondTick = null;
@@ -79,18 +79,22 @@ function ToneTest() {
       sixteenthSpacing = secondTick - firstTick;
     }
 
-    // Estimate first target
-    if (targetTick === NaN) {
-      if (typeof targetRhythmArray[0] === 'undefined') {
-        targetTick = 'no target'
-      } else {
-        targetTick = (48 * targetRhythmArray[0]) - sixteenthSpacing;
+    // Estimate first targets
+    if (targetTick === null) {
+      if (targetRhythmArray.length < 1) {
+        targetTick = 'no target';
+        nextTargetTick = 'no next target';
       }
-      if (typeof targetRhythmArray[1] === 'undefined') {
-        nextTargetTick = targetTick + (sixteenthSpacing * 15)
-      } else {
-        nextTargetTick = (48 * targetRhythmArray[1]) - sixteenthSpacing;
-      }
+      // if (typeof targetRhythmArray[0] === 'undefined') {
+      //   targetTick = 'no target';
+      // } else {
+      //   targetTick = (48 * targetRhythmArray[0]) - sixteenthSpacing;
+      // }
+      // if (typeof targetRhythmArray[1] === 'undefined' && typeof targetRhythmArray[0] === Number) {
+      //   nextTargetTick = targetTick + (sixteenthSpacing * 15)
+      // } else {
+      //   nextTargetTick = (48 * targetRhythmArray[1]) - sixteenthSpacing;
+      // }
     }
 
     // Metronome (using next 16th note on 'else if' to reduce redux calls)
@@ -217,6 +221,7 @@ function ToneTest() {
 
   function changeRhythm(newArray) {
     targetRhythmArray = newArray;
+    console.log(targetRhythmArray)
     dispatch(updateRhythm(targetRhythmArray));
   }
 
