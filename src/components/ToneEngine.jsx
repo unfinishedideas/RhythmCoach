@@ -3,6 +3,7 @@ import * as Tone from 'tone';
 import kickSample from './../audio/kick.ogg';
 import snareSample from './../audio/snare.ogg';
 import hatSample from './../audio/hat.ogg';
+import clapSample from './../audio/clap.ogg';
 import { useDispatch } from "react-redux";
 import { changeCurrentTarget, updateTargetDistance, updateAccuracy, metronomeSwitch, updateRhythm, updateMetronomeCount } from "./../actions";
 import UI from "./interface/UI";
@@ -20,11 +21,12 @@ function ToneTest() {
   let kickBuffer = new Tone.Buffer(kickSample);
   let snareBuffer = new Tone.Buffer(snareSample);
   let hatBuffer = new Tone.Buffer(hatSample);
+  let clapBuffer = new Tone.Buffer(clapSample);
 
   let kickPlayer = new Tone.Player(kickBuffer, function () { console.log('kick sample initialized'); }).toMaster();
   let snarePlayer = new Tone.Player(snareBuffer, function () { console.log('snare sample initialized'); }).toMaster();
   let hatPlayer = new Tone.Player(hatBuffer, function () { console.log('hat sample initialized'); }).toMaster();
-
+  let clapPlayer = new Tone.Player(clapBuffer, function () { console.log('clap sample initialized') }).toMaster();
   // Playback ========================================================================================================
 
   // IDEA: Maybe instead of calculating the next rhythm on a loop at the last 16th note, calculate it once the rhythm array is empty.
@@ -61,7 +63,7 @@ function ToneTest() {
     // 1  e  +  a     2  e  +  a     3  e  +  a     4  e  +  a  
     // 1  2  3  4     5  6  7  8     9  10 11 12    13 14 15 16
     const hatRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
-    const snareRhythmArray = [5, 13];
+    const clapRhythmArray = [5, 13];
     const kickRhythmArray = [1, 3, 0, 9, 10, 12];
     // const targetRhythmArray = [1, 3, 5, 7, 9, 11, 13, 15];
     // const targetRhythmArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -82,7 +84,6 @@ function ToneTest() {
       dispatch(metronomeSwitch(true));
       // Make a switch!!
       switch (counter) {
-
         case 5:
           dispatch(updateMetronomeCount(2));
           break
@@ -95,7 +96,6 @@ function ToneTest() {
         default:
           dispatch(updateMetronomeCount(1));
           break
-
       }
     } else if (counter === 2 || counter === 6 || counter === 10 || counter === 14) {
       dispatch(metronomeSwitch(false));
@@ -151,14 +151,18 @@ function ToneTest() {
     if (hatRhythmArray.includes(counter)) {
       hatPlayer.start();
     }
-    // Snares
-    if (snareRhythmArray.includes(counter)) {
-      snarePlayer.start();
+    // Claps
+    if (clapRhythmArray.includes(counter)) {
+      clapPlayer.start();
       // console.log('you want', Tone.Transport.getTicksAtTime())
     }
     // Kicks
     if (kickRhythmArray.includes(counter)) {
       kickPlayer.start();
+    }
+    // Target Playback
+    if (targetRhythmArray.includes(counter)) {
+      snarePlayer.start();
     }
 
     // Reset Counter on beat 1

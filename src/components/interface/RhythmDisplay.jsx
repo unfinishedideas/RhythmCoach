@@ -9,7 +9,7 @@ function RhythmDisplay(props) {
         <div style={styles.rhythmComponentStyle}>
             <div style={styles.rhythmDisplayStyle}>
                 <Counter count={props.count} />
-                <GridDisplay />
+                <GridDisplay targetArray={props.targetArray} />
             </div>
         </div>
     )
@@ -33,7 +33,8 @@ const styles = {
 }
 
 RhythmDisplay.propTypes = {
-    count: PropTypes.number
+    count: PropTypes.number,
+    targetArray: PropTypes.array
 }
 
 export default RhythmDisplay;
