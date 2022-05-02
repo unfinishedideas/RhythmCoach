@@ -10,7 +10,7 @@ Simply press play and try to hit the notes on time with either the tap button on
 
 ## Available Scripts
 
-In the project directory, you can run:
+This project uses the package manager [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
 
 ### `yarn start`
 
